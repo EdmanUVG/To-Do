@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.walletsaver.ui.addbudget.AddBudgetViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        tools:context=".ui.addbudget.AddBudgetFragment">
+
+        <EditText
+            android:id="@+id/editText_budget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="24dp"
+            android:ems="10"
+            android:hint="@string/agregar_gastos_text"
+            android:inputType="number"
+            android:text="@={viewModel.presupuesto}"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/budget_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_budget"
+            app:singleSelection="true">
+
+<!--            <com.google.android.material.chip.Chip-->
+<!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Hogar"-->
+<!--                app:checkedIcon="@drawable/ic_check_white"-->
+<!--                app:checkedIconVisible="true"-->
+<!--                app:chipBackgroundColor="@color/selected_highlight"-->
+<!--                tools:checked="true" />-->
+
+<!--            <com.google.android.material.chip.Chip-->
+<!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Alimentos"-->
+<!--                app:checkedIcon="@drawable/ic_check_white"-->
+<!--                app:checkedIconVisible="true"-->
+<!--                app:chipBackgroundColor="@color/selected_highlight"-->
+<!--                tools:checked="true" />-->
+
+<!--            <com.google.android.material.chip.Chip-->
+<!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Educacion"-->
+<!--                app:checkedIcon="@drawable/ic_check_white"-->
+<!--                app:checkedIconVisible="true"-->
+<!--                app:chipBackgroundColor="@color/selected_highlight"-->
+<!--                tools:checked="true" />-->
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/budget_category_text"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/budget_list"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_budget" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
