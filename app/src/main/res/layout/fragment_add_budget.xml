@@ -28,7 +28,7 @@
             android:ems="10"
             android:hint="@string/agregar_gastos_text"
             android:inputType="number"
-            android:text="@={viewModel.presupuesto}"
+            android:text="@={viewModel.amount}"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,54 +43,70 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editText_budget"
-            app:singleSelection="true">
-
-<!--            <com.google.android.material.chip.Chip-->
-<!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Hogar"-->
-<!--                app:checkedIcon="@drawable/ic_check_white"-->
-<!--                app:checkedIconVisible="true"-->
-<!--                app:chipBackgroundColor="@color/selected_highlight"-->
-<!--                tools:checked="true" />-->
-
-<!--            <com.google.android.material.chip.Chip-->
-<!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Alimentos"-->
-<!--                app:checkedIcon="@drawable/ic_check_white"-->
-<!--                app:checkedIconVisible="true"-->
-<!--                app:chipBackgroundColor="@color/selected_highlight"-->
-<!--                tools:checked="true" />-->
-
-<!--            <com.google.android.material.chip.Chip-->
-<!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Educacion"-->
-<!--                app:checkedIcon="@drawable/ic_check_white"-->
-<!--                app:checkedIconVisible="true"-->
-<!--                app:chipBackgroundColor="@color/selected_highlight"-->
-<!--                tools:checked="true" />-->
-
-
-        </com.google.android.material.chip.ChipGroup>
+            app:singleSelection="true"></com.google.android.material.chip.ChipGroup>
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
             android:text="@string/budget_category_text"
             android:textColor="@android:color/black"
-            android:textSize="16sp"
+            android:textSize="17sp"
             app:layout_constraintBottom_toTopOf="@+id/budget_list"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editText_budget" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/budget_list">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Mayo"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textView4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:background="@color/colorPrimary"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Junio"
+                android:textColor="@android:color/white"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="154dp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Julio"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

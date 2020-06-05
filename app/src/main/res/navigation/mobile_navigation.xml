@@ -13,13 +13,10 @@
         <action
             android:id="@+id/action_navigation_home_to_add_budget_fragment"
             app:destination="@id/add_budget_fragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_budget_detail_fragment"
+            app:destination="@id/budget_detail_fragment" />
     </fragment>
-
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.walletsaver.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
@@ -31,4 +28,13 @@
         android:name="com.example.walletsaver.ui.addbudget.AddBudgetFragment"
         android:label="Add Budget"
         tools:layout="@layout/fragment_add_budget" />
+    <fragment
+        android:id="@+id/budget_detail_fragment"
+        android:name="com.example.walletsaver.ui.budgetdetail.BudgetDetailFragment"
+        android:label="fragment_budget_detail"
+        tools:layout="@layout/fragment_budget_detail" >
+        <argument
+            android:name="budgetId"
+            app:argType="long" />
+    </fragment>
 </navigation>

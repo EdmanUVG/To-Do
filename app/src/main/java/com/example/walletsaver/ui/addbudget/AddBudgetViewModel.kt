@@ -1,35 +1,28 @@
 package com.example.walletsaver.ui.addbudget
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.walletsaver.database.Budget
 import com.example.walletsaver.database.BudgetDatabaseDao
 import kotlinx.coroutines.*
-import java.io.IOError
-import java.io.IOException
-import kotlin.math.log
 
 class AddBudgetViewModel(val database: BudgetDatabaseDao) : ViewModel() {
 
-    val presupuesto = MutableLiveData<String>()
-
+    val amount = MutableLiveData<String>()
 
     private val viewModelJob = Job()
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-
-    fun insertBudget() {
+    fun insertBudget(category: String, iconIndex: Int) {
         uiScope.launch {
-            insert()
+            insert(category, iconIndex)
         }
     }
 
-    private suspend fun insert() {
+    private suspend fun insert(category: String, iconIndex: Int) {
         withContext(Dispatchers.IO) {
-            database.insert(Budget(budgets = presupuesto.value ?: ""))
+            database.insert(Budget(amount = amount.value ?: "", category = category?:"", iconIndex = iconIndex?: 2))
         }
     }
 

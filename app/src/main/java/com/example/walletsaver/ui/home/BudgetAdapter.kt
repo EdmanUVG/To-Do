@@ -5,40 +5,54 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.walletsaver.R
 import com.example.walletsaver.database.Budget
 import com.example.walletsaver.databinding.BudgetItemLayoutBinding
-import com.example.walletsaver.databinding.FragmentAddBudgetBinding
-import kotlinx.android.synthetic.main.budget_item_layout.view.*
 
-class BudgetAdapter internal constructor(
-    context: Context
-): RecyclerView.Adapter<BudgetAdapter.BudgetViewHolder>() {
+class BudgetAdapter (val listener: BudgetClickListener): ListAdapter<Budget, BudgetAdapter.ViewHolder>(BudgetDiffCallback())  {
 
-    private val inflater: LayoutInflater = LayoutInflater.from(context)
-    private var budgets = emptyList<Budget>()
-
-
-    inner class BudgetViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val budgetName: TextView = itemView.findViewById(R.id.budget_name_text)
+    override fun onBindViewHolder(holder: BudgetAdapter.ViewHolder, position: Int) {
+        val item = getItem(position)
+        holder.bind(listener, item)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BudgetViewHolder {
-        val itemView = inflater.inflate(R.layout.budget_item_layout, parent, false)
-        return BudgetViewHolder(itemView)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BudgetAdapter.ViewHolder {
+        return BudgetAdapter.ViewHolder.from(parent)
     }
 
-    override fun onBindViewHolder(holder: BudgetViewHolder, position: Int) {
-        val current = budgets[position]
-        holder.budgetName.text = current.budgets
+    class ViewHolder private constructor(val binding: BudgetItemLayoutBinding)
+        : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(clickListener: BudgetClickListener, item:Budget) {
+            binding.budget = item
+            binding.clickListener = clickListener
+            binding.executePendingBindings()
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = BudgetItemLayoutBinding.inflate(layoutInflater, parent, false)
+
+                return ViewHolder(binding)
+            }
+        }
+    }
+}
+
+class BudgetDiffCallback: DiffUtil.ItemCallback<Budget>() {
+    override fun areItemsTheSame(oldItem: Budget, newItem: Budget): Boolean {
+        return oldItem.budgetId == newItem.budgetId
     }
 
-    internal fun setBudgets(budgets: List<Budget>) {
-        this.budgets = budgets
-        notifyDataSetChanged()
+    override fun areContentsTheSame(oldItem: Budget, newItem: Budget): Boolean {
+        return oldItem == newItem
     }
+}
 
-    override fun getItemCount() = budgets.size
+class BudgetClickListener(val clickListener: (budgetid: Long) -> Unit) {
+    fun onClick(budget: Budget) = clickListener(budget.budgetId)
 }

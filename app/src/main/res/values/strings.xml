@@ -5,4 +5,17 @@
     <string name="title_notifications">Notifications</string>
     <string name="agregar_gastos_text">Agregar gastos</string>
     <string name="budget_category_text">Categoría:</string>
+
+    <string name="text_amount">Q %1$s</string>
+    <string name="text_id"> %1$d</string>
+
+
+    <string name="home_category_text">Hogar</string>
+    <string name="education_category_text">Educación</string>
+    <string name="transportation_category_text">Transporte</string>
+    <string name="finance_category_text">Finanzas</string>
+    <string name="food_category_text">Alimentos</string>
+    <string name="entertainment_category_text">Entretenimiento</string>
+
+
 </resources>
