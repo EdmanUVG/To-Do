@@ -9,11 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 
 import com.example.walletsaver.R
 import com.example.walletsaver.database.BudgetDatabase
 import com.example.walletsaver.databinding.FragmentBudgetDetailBinding
+import com.example.walletsaver.ui.home.HomeFragmentDirections
 import kotlinx.android.synthetic.main.fragment_add_budget.*
 import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 
@@ -51,6 +53,19 @@ class BudgetDetailFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(BudgetDetailViewModel::class.java)
 
         binding.viewModel = viewModel
+
+        viewModel.budgetClicked.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                requireView().findNavController().navigate(
+                    BudgetDetailFragmentDirections
+                    .actionBudgetDetailFragmentToBudgetEditFragment(it))
+                viewModel.onBudgetClickedCompleted()
+            }
+        })
+
+        binding.imageEdit.setOnClickListener {
+            viewModel.onBudgetClicked(binding.textId.text.toString().toLong())
+        }
 
         viewModel.budget.observe(viewLifecycleOwner, Observer {
             (activity as AppCompatActivity).supportActionBar?.title = viewModel.budget.value?.category

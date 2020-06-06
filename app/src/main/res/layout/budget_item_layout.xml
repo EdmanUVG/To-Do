@@ -34,11 +34,11 @@
             android:id="@+id/budget_category_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:text="@{budget.category}"
             android:textColor="@android:color/black"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toEndOf="@+id/budget_category_image"
             app:layout_constraintTop_toTopOf="parent" />
 

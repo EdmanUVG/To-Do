@@ -52,7 +52,6 @@ class BudgetEditFragment : Fragment() {
         viewModel.budget.observe(viewLifecycleOwner, Observer {
             (activity as AppCompatActivity).supportActionBar?.title = viewModel.budget.value?.category
         })
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -62,8 +61,7 @@ class BudgetEditFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_save) {
-
-//            viewModel.deleteBudget()
+            viewModel.updateBudget()
             activity?.onBackPressed()
             Toast.makeText(activity, "Updated", Toast.LENGTH_SHORT).show()
 

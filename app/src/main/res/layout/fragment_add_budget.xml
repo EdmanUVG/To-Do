@@ -43,7 +43,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editText_budget"
-            app:singleSelection="true"></com.google.android.material.chip.ChipGroup>
+            app:singleSelection="true" />
 
         <TextView
             android:id="@+id/textView"
