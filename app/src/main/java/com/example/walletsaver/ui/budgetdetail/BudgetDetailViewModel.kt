@@ -28,5 +28,4 @@ class BudgetDetailViewModel(val database: BudgetDatabaseDao, val budgetId: Long)
         super.onCleared()
         viewModelJob.cancel()
     }
-
 }

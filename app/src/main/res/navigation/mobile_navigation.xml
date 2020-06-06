@@ -36,5 +36,17 @@
         <argument
             android:name="budgetId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_budget_detail_fragment_to_budget_edit_fragment"
+            app:destination="@id/budget_edit_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/budget_edit_fragment"
+        android:name="com.example.walletsaver.ui.budgetedit.BudgetEditFragment"
+        android:label="BudgetEditFragment"
+        tools:layout="@layout/fragment_budget_edit">
+        <argument
+            android:name="budgetId"
+            app:argType="long" />
     </fragment>
 </navigation>
