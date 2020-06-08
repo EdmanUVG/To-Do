@@ -21,8 +21,8 @@ class BudgetEditViewModel(val database: BudgetDatabaseDao, val budgetId: Long) :
         val prep = budget.value
         uiScope.launch {
             update(prep?.let {
-                Budget(budgetId = it.budgetId, category = it.category, amount = amount.value ?: "",
-                iconIndex = it.iconIndex)
+                Budget(budgetId = it.budgetId, category = it.category, amount = amount.value ?: it.amount,
+                iconIndex = it.iconIndex, income = it.income, expense = it.expense)
             })
         }
     }

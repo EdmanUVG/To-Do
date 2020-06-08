@@ -17,5 +17,9 @@ data class Budget (
     val category: String,
 
     @Nullable
-    val iconIndex: Int
+    val iconIndex: Int,
+
+    var income: String,
+
+    var expense: String
 )

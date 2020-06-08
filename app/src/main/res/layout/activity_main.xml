@@ -29,6 +29,11 @@
                 android:background="@android:color/white"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#F3F3F8"/>
+
         </com.google.android.material.appbar.AppBarLayout>
 
         <fragment

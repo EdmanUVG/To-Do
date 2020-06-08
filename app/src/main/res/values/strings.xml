@@ -3,12 +3,18 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="agregar_gastos_text">Agregar gastos</string>
+    <string name="agregar_presupuesto_text">Agregar presupuesto</string>
+    <string name="agregar_ingreso_text">Agregar ingreso</string>
     <string name="budget_category_text">Categoría:</string>
 
-    <string name="text_amount">Q %1$s</string>
+    <string name="text_expenses">Gastos</string>
+
+    <integer name="progress_max">0</integer>
+
+    <string name="text_amount">%1$s</string>
     <string name="text_id">%1$d</string>
     <string name="text_date">%1$d</string>
+    <string name="text_max_progress">%1$d</string>
 
 
     <string name="home_category_text">Hogar</string>

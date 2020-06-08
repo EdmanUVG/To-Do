@@ -50,10 +50,9 @@
             android:layout_marginBottom="16dp"
             android:clickable="true"
             android:focusable="true"
-            android:background="@color/colorPrimary"
-            app:backgroundTint="@color/colorPrimary"
+            app:tint="@null"
             android:backgroundTint="@color/colorPrimary"
-            android:backgroundTintMode="add"
+            app:backgroundTint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_add" />
