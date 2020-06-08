@@ -11,11 +11,11 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_navigation_home_to_add_budget_fragment"
-            app:destination="@id/add_budget_fragment" />
-        <action
             android:id="@+id/action_navigation_home_to_budget_detail_fragment"
             app:destination="@id/budget_detail_fragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_tab_holder_fragment"
+            app:destination="@id/tab_holder_fragment" />
     </fragment>
 
     <fragment
@@ -49,4 +49,9 @@
             android:name="budgetId"
             app:argType="long" />
     </fragment>
+    <fragment
+        android:id="@+id/tab_holder_fragment"
+        android:name="com.example.walletsaver.ui.tabs.TabHolderFragment"
+        android:label="fragment_tab_holder"
+        tools:layout="@layout/fragment_tab_holder" />
 </navigation>

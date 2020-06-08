@@ -64,7 +64,7 @@ class HomeFragment : Fragment() {
         })
 
         binding.fab.setOnClickListener{
-            findNavController().navigate(R.id.action_navigation_home_to_add_budget_fragment)
+            findNavController().navigate(R.id.action_navigation_home_to_tab_holder_fragment)
         }
     }
 }
