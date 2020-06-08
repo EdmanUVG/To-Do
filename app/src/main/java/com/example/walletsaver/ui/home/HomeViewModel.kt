@@ -9,9 +9,12 @@ class HomeViewModel(val database: BudgetDatabaseDao) : ViewModel() {
 
     val budgets = database.getBudgets()
 
+    val incomes = database.getIncomes()
+
     private val _budgetClicked = MutableLiveData<Long>()
     val budgetClicked: LiveData<Long>
     get() = _budgetClicked
+
 
     fun onBudgetClicked(budgetId: Long) {
         _budgetClicked.value = budgetId
@@ -20,5 +23,4 @@ class HomeViewModel(val database: BudgetDatabaseDao) : ViewModel() {
     fun onBudgetClickedCompleted() {
         _budgetClicked.value = null
     }
-
 }

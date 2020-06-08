@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navigation_home_to_tab_holder_fragment"
             app:destination="@id/tab_holder_fragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_settings_fragment"
+            app:destination="@id/settings_fragment" />
     </fragment>
 
     <fragment
@@ -52,6 +55,10 @@
     <fragment
         android:id="@+id/tab_holder_fragment"
         android:name="com.example.walletsaver.ui.tabs.TabHolderFragment"
-        android:label="fragment_tab_holder"
         tools:layout="@layout/fragment_tab_holder" />
+    <fragment
+        android:id="@+id/settings_fragment"
+        android:name="com.example.walletsaver.ui.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

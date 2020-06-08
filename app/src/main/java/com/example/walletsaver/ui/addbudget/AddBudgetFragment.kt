@@ -1,12 +1,9 @@
 package com.example.walletsaver.ui.addbudget
 
-import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources.getColorStateList
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -129,9 +126,6 @@ class AddBudgetFragment : Fragment() {
         chipGroup.addView(chip5)
         chipGroup.addView(chip6)
 
-
-
-
         binding.viewModel = viewModel
 
     }
@@ -146,17 +140,15 @@ class AddBudgetFragment : Fragment() {
             val budget = editText_budget.text.toString().trim()
 
             if (budget.isEmpty()) {
-                editText_budget.error = "Presupuesto requerido"
+                editText_budget.error = getString(R.string.budget_required_text)
                 editText_budget.requestFocus()
             } else {
                 viewModel.insertBudget(category, iconIndex)
                 activity?.onBackPressed()
-                Toast.makeText(activity, "Saved", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, getString(R.string.budget_saved_text), Toast.LENGTH_SHORT).show()
 
                 activity?.let { UIUtil.hideKeyboard(it) }
             }
-
-
         }
         return super.onOptionsItemSelected(item)
     }

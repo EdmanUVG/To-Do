@@ -29,9 +29,9 @@ class TabHolderFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val adapter = ViewPagerAdapter(childFragmentManager)
-        adapter.addFragment(AddIncomeFragment(), "MindOrks")
-        adapter.addFragment(AddBudgetFragment(), "GetMeAnApp")
-        adapter.addFragment(AddExpenseFragment(), "BestContentApp")
+        adapter.addFragment(AddBudgetFragment(), "Presupuesto")
+        adapter.addFragment(AddIncomeFragment(), "Ingreso")
+        adapter.addFragment(AddExpenseFragment(), "Gasto")
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
 

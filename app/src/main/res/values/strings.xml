@@ -5,11 +5,20 @@
     <string name="title_notifications">Notifications</string>
     <string name="agregar_presupuesto_text">Agregar presupuesto</string>
     <string name="agregar_ingreso_text">Agregar ingreso</string>
+    <string name="agregar_gasto_text">Agregar gasto</string>
     <string name="budget_category_text">Categoría:</string>
 
     <string name="text_expenses">Gastos</string>
 
-    <integer name="progress_max">0</integer>
+    <string name="budget_required_text">Presupuesto requerido</string>
+    <string name="income_required_text">Ingreso requerido</string>
+    <string name="expense_required_text">Gasto requerido</string>
+
+    <string name="budget_saved_text">¡Presupuesto guardado!</string>
+    <string name="income_saved_text">¡Ingreso guardado!</string>
+    <string name="expense_saved_text">¡Gasto guardado!</string>
+
+<!--    <integer name="progress_max"></integer>-->
 
     <string name="text_amount">%1$s</string>
     <string name="text_id">%1$d</string>
@@ -23,6 +32,9 @@
     <string name="finance_category_text">Finanzas</string>
     <string name="food_category_text">Alimentos</string>
     <string name="entertainment_category_text">Entretenimiento</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
