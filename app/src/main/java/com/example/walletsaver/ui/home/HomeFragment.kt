@@ -2,28 +2,32 @@ package com.example.walletsaver.ui.home
 
 import android.os.Bundle
 import android.view.*
-import android.widget.TextView
+import android.Manifest
+import android.app.Activity
+import android.content.pm.PackageManager
+import android.os.Build
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.walletsaver.R
 import com.example.walletsaver.database.BudgetDatabase
 import com.example.walletsaver.databinding.FragmentHomeBinding
-import kotlinx.android.synthetic.main.fragment_add_budget.*
-import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 
 class HomeFragment : Fragment() {
 
     private lateinit var viewModel: HomeViewModel
     private lateinit var viewModelFactory: HomeViewModelFactory
     private lateinit var binding: FragmentHomeBinding
+
+    private val STORAGE_REQUEST_CODE = 101
+    private val TAG = "PermissionDemo"
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                 savedInstanceState: Bundle?): View? {
@@ -68,12 +72,49 @@ class HomeFragment : Fragment() {
             }
         })
 
-        viewModel.incomes?.observe(viewLifecycleOwner, Observer { income ->
-            binding.textIncome.text = income.toString() ?: "0"
-        })
+//        viewModel.incomes?.observe(viewLifecycleOwner, Observer { income ->
+//            binding.textIncome.text = income.toString() ?: "0"
+//        })
+
 
         binding.fab.setOnClickListener{
+            setupPermissions()
+        }
+    }
+
+    private fun setupPermissions() {
+
+        if (getContext()?.let { ActivityCompat.checkSelfPermission(it, Manifest.permission.READ_EXTERNAL_STORAGE) }
+                    != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getContext() as Activity,
+                Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+                Toast.makeText(activity, "Need", Toast.LENGTH_SHORT).show()
+            } else {
+                ActivityCompat.requestPermissions(getContext() as Activity,
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                STORAGE_REQUEST_CODE)
+            }
+        } else {
             findNavController().navigate(R.id.action_navigation_home_to_tab_holder_fragment)
+        }
+    }
+
+    // Receive the permissions request result
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>,
+                                            grantResults: IntArray) {
+        when (requestCode) {
+            STORAGE_REQUEST_CODE -> {
+
+                if((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)){
+                    // Do the task now
+                    findNavController().navigate(R.id.action_navigation_home_to_tab_holder_fragment)
+                }else{
+                    Toast.makeText(activity, "Permissions denied.", Toast.LENGTH_SHORT).show()
+                }
+                return
+            }
         }
     }
 
