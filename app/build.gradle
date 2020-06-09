@@ -89,6 +89,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.6"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.6"
 
+    // Mask Edit Text
+    implementation 'com.github.santalu:mask-edittext:1.1.1'
 
     // Lifecycle
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'

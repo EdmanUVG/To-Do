@@ -72,8 +72,8 @@ class HomeFragment : Fragment() {
             }
         })
 
-//        viewModel.incomes?.observe(viewLifecycleOwner, Observer { income ->
-//            binding.textIncome.text = income.toString() ?: "0"
+//        viewModel.incomes.observe(viewLifecycleOwner, Observer { income ->
+//            binding.textIncome.text = income.toString()
 //        })
 
 
