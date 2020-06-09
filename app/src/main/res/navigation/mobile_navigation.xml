@@ -55,6 +55,7 @@
     <fragment
         android:id="@+id/tab_holder_fragment"
         android:name="com.example.walletsaver.ui.tabs.TabHolderFragment"
+        android:label="Agregar"
         tools:layout="@layout/fragment_tab_holder" />
     <fragment
         android:id="@+id/settings_fragment"

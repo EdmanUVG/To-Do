@@ -28,6 +28,8 @@ class HomeFragment : Fragment() {
     private val STORAGE_REQUEST_CODE = 101
     private val TAG = "PermissionDemo"
 
+    var esVisible = true
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                 savedInstanceState: Bundle?): View? {
@@ -69,6 +71,20 @@ class HomeFragment : Fragment() {
         viewModel.budgets.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
+            }
+        })
+
+        viewModel.rowsCount.observe(viewLifecycleOwner, Observer { count ->
+            if (count == 0) {
+                if (esVisible) {
+                    binding.linearLayout.visibility = View.INVISIBLE
+                    binding.emptyScreen.visibility = View.VISIBLE
+                    esVisible = false
+                } else {
+                    binding.linearLayout.visibility = View.VISIBLE
+                    binding.emptyScreen.visibility = View.INVISIBLE
+                    esVisible = true
+                }
             }
         })
 

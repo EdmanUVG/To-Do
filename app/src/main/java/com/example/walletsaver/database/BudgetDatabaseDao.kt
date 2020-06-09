@@ -30,6 +30,9 @@ interface BudgetDatabaseDao {
     @Query("SELECT amount FROM budget_table")
     fun getSumOfBudgets(): LiveData<List<String>>
 
+    @Query("SELECT COUNT(id) FROM budget_table")
+    fun getRowsCount(): LiveData<Int>
+
 
     @Query("SELECT * FROM budget_table ORDER BY id DESC")
     fun getBudgets(): LiveData<List<Budget>>

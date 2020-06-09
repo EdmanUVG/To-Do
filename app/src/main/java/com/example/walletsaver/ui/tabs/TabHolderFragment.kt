@@ -2,10 +2,12 @@ package com.example.walletsaver.ui.tabs
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 
 import com.example.walletsaver.R
 import com.example.walletsaver.ui.addbudget.AddBudgetFragment
@@ -29,12 +31,21 @@ class TabHolderFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val adapter = ViewPagerAdapter(childFragmentManager)
-        adapter.addFragment(AddBudgetFragment(), "Presupuesto")
         adapter.addFragment(AddIncomeFragment(), "Ingreso")
+        adapter.addFragment(AddBudgetFragment(), "Presupuesto")
         adapter.addFragment(AddExpenseFragment(), "Gasto")
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
 
+        tabs!!.post (Runnable {
+           tabs!!.setupWithViewPager(viewPager)})
+        selectDefaultTab(1)
     }
 
+    private fun selectDefaultTab(index: Int) {
+        Handler().postDelayed(Runnable {
+            tabs!!.setScrollPosition(index, 0f, true)
+            viewPager!!.currentItem = index
+        }, 100)
+    }
 }
