@@ -37,7 +37,6 @@
             android:ems="10"
             android:hint="@string/agregar_ingreso_text"
             android:inputType="number"
-            android:text="@={viewModel.income}"
             android:textAlignment="center"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"

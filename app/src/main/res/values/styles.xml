@@ -9,12 +9,22 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">#FFFFFF</item>
         <item name="android:navigationBarColor">@android:color/white</item>
-        <item name="android:fontFamily">@font/roboto</item>
+
+        <item name="android:textViewStyle">@style/RobotoTextViewSyle</item>
+        <item name="android:buttonStyle">@style/RobotoButtonSyle</item>
 
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.ActionBar"/>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light"/>
+
+    <style name="RobotoTextViewSyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="RobotoButtonSyle" parent="android:Widget.Holo.Button">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
 
 </resources>

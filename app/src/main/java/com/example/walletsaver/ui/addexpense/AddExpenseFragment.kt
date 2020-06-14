@@ -174,7 +174,7 @@ class AddExpenseFragment : Fragment() {
                 editText_budget.error = getString(R.string.expense_required_text)
                 editText_budget.requestFocus()
             } else {
-                viewModel.updateBudget(category)
+                viewModel.updateBudget(Integer.parseInt(expense), category)
                 activity?.onBackPressed()
                 Toast.makeText(activity, getString(R.string.expense_saved_text), Toast.LENGTH_SHORT).show()
 

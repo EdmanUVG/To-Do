@@ -20,10 +20,12 @@
 
 <!--    <integer name="progress_max"></integer>-->
 
-    <string name="text_amount">%1$s</string>
+    <string name="text_amount">%1$d</string>
     <string name="text_id">%1$d</string>
     <string name="text_date">%1$d</string>
     <string name="text_max_progress">%1$d</string>
+
+    <string name="text_settings">Ajustes</string>
 
 
     <string name="home_category_text">Hogar</string>

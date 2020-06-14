@@ -1,6 +1,5 @@
 package com.example.walletsaver.ui.budgetedit
 
-import android.provider.SyncStateContract.Helpers.update
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.walletsaver.database.Budget
@@ -17,11 +16,11 @@ class BudgetEditViewModel(val database: BudgetDatabaseDao, val budgetId: Long) :
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    fun updateBudget() {
+    fun updateBudget(amount: Int) {
         val prep = budget.value
         uiScope.launch {
             update(prep?.let {
-                Budget(budgetId = it.budgetId, category = it.category, amount = amount.value ?: it.amount,
+                Budget(budgetId = it.budgetId, category = it.category, budget = amount ?: it.budget,
                 iconIndex = it.iconIndex, income = it.income, expense = it.expense)
             })
         }

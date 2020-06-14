@@ -13,10 +13,10 @@ interface BudgetDatabaseDao {
     fun update(budget: Budget)
 
     @Query("UPDATE budget_table SET expense = :expense WHERE category = :category")
-    fun updateBudget(expense: String, category: String)
+    fun updateBudget(expense: Int, category: String)
 
     @Query("UPDATE budget_table SET income = :income WHERE category = :category")
-    fun addIncome(income: String, category: String)
+    fun addIncome(income: Int, category: String)
 
     @Delete
     fun delete(budget: Budget)
@@ -24,14 +24,17 @@ interface BudgetDatabaseDao {
     @Query("SELECT * FROM budget_table WHERE id = :key")
     fun getBudget(key: Long): LiveData<Budget>
 
-    @Query("SELECT income FROM budget_table")
-    fun getIncomes(): LiveData<String>
-
-    @Query("SELECT amount FROM budget_table")
-    fun getSumOfBudgets(): LiveData<List<String>>
-
     @Query("SELECT COUNT(id) FROM budget_table")
     fun getRowsCount(): LiveData<Int>
+
+    @Query("SELECT SUM(income) FROM budget_table")
+    fun getSumOfIncomes(): LiveData<Int>
+
+    @Query("SELECT SUM(expense) FROM budget_table")
+    fun getSumOfExpenses(): LiveData<Int>
+
+    @Query("SELECT SUM(budget) FROM budget_table")
+    fun getSumOfBudgets(): LiveData<Int>
 
 
     @Query("SELECT * FROM budget_table ORDER BY id DESC")

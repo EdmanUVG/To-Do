@@ -5,7 +5,9 @@ import android.view.*
 import android.Manifest
 import android.app.Activity
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Build
+import android.provider.CalendarContract
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -18,6 +20,13 @@ import androidx.navigation.fragment.findNavController
 import com.example.walletsaver.R
 import com.example.walletsaver.database.BudgetDatabase
 import com.example.walletsaver.databinding.FragmentHomeBinding
+import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.animation.Easing.EaseInOutCubic
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.utils.ColorTemplate
 
 class HomeFragment : Fragment() {
 
@@ -29,6 +38,8 @@ class HomeFragment : Fragment() {
     private val TAG = "PermissionDemo"
 
     var esVisible = true
+
+    private lateinit var pieChart: PieChart
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -87,13 +98,63 @@ class HomeFragment : Fragment() {
                 }
             }
         })
-
-//        viewModel.incomes.observe(viewLifecycleOwner, Observer { income ->
-//            binding.textIncome.text = income.toString()
+//
+//        var budgetFloat = 0.0f
+//
+//        viewModel.sumOfBudgets.observe(viewLifecycleOwner, Observer { budget ->
+//            budgetFloat = budget.toFloat()
 //        })
+//
+//        pieChart = binding.pieChart
+//
+//        pieChart.setUsePercentValues(true)
+//        pieChart.getDescription().setEnabled(false)
+//        pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
+//
+//        pieChart.setDragDecelerationFrictionCoef(0.95f)
+//
+//        pieChart.setDrawHoleEnabled(true)
+//        pieChart.setHoleColor(Color.WHITE)
+//        pieChart.setTransparentCircleRadius(61f)
+//
+//        pieChart.animateY(1000, Easing.EaseInOutCubic)
+//
+//        val yValue = ArrayList<PieEntry>()
+//
+//        yValue.add(PieEntry(34f, "Ingresos"))
+//        yValue.add(PieEntry(budgetFloat, "Presupuestos"))
+//        yValue.add(PieEntry(48f, "Gastos"))
+//
+//        val dataSet = PieDataSet(yValue, "Countries")
+//        dataSet.setSliceSpace(3f)
+//        dataSet.setSelectionShift(5f)
+//        dataSet.setColors(Color.BLUE)
+//
+//        val data = PieData(dataSet)
+//        data.setValueTextSize(10f)
+//        data.setValueTextColor(Color.YELLOW)
+//
+//        pieChart.setData(data)
 
 
-        binding.fab.setOnClickListener{
+
+
+//        binding.buttonOk.setOnClickListener {
+//            viewModel.sumOfBudgets.observe(viewLifecycleOwner, Observer { budget ->
+//                val budgetString = java.text.NumberFormat.getIntegerInstance().format(budget)
+//                binding.textView18.text = budgetString
+//            })
+//
+//            viewModel.sumOfIncomes.observe(viewLifecycleOwner, Observer { income ->
+//                binding.textView16.text = income.toString()
+//            })
+//
+//            viewModel.sumOfExpenses.observe(viewLifecycleOwner, Observer { expense ->
+//                binding.textView17.text = expense.toString()
+//            })
+//        }
+
+        binding.fab.setOnClickListener {
             setupPermissions()
         }
     }

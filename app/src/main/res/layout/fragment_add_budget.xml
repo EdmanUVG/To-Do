@@ -21,7 +21,7 @@
             android:background="@android:color/white"
             tools:context=".ui.addbudget.AddBudgetFragment">
 
-            <EditText
+            <com.santalu.maskedittext.MaskEditText
                 android:id="@+id/editText_budget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -32,12 +32,12 @@
                 android:ems="10"
                 android:hint="@string/agregar_presupuesto_text"
                 android:inputType="number"
-                android:text="@={viewModel.amount}"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView3"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:met_mask="###,###"/>
 
 
             <com.google.android.material.chip.ChipGroup

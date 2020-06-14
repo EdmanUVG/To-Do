@@ -55,13 +55,14 @@ class AddIncomeFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_save) {
+
             val income = editText_income.text.toString().trim()
 
             if (income.isEmpty()) {
                 editText_budget.error = getString(R.string.income_required_text)
                 editText_budget.requestFocus()
             } else {
-                viewModel.addIncome("Income")
+                viewModel.addIncome(Integer.parseInt(income), "Income")
                 activity?.onBackPressed()
                 Toast.makeText(activity, getString(R.string.income_saved_text), Toast.LENGTH_SHORT).show()
 

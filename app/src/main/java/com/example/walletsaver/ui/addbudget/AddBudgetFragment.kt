@@ -6,11 +6,13 @@ import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources.getColorStateList
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.walletsaver.R
 import com.example.walletsaver.database.BudgetDatabase
 import com.example.walletsaver.databinding.FragmentAddBudgetBinding
 import com.google.android.material.chip.Chip
+import com.santalu.maskedittext.MaskEditText
 import kotlinx.android.synthetic.main.fragment_add_budget.*
 import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 
@@ -21,8 +23,12 @@ class AddBudgetFragment : Fragment() {
 
     private lateinit var binding: FragmentAddBudgetBinding
 
+    private lateinit var maskEditText: MaskEditText
+
+
     private var category = ""
     private var iconIndex = 7
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                 savedInstanceState: Bundle?): View? {
@@ -137,13 +143,14 @@ class AddBudgetFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_save) {
-            val budget = editText_budget.text.toString().trim()
+
+            val budget = editText_budget.text.toString().trim().replace(",", "")
 
             if (budget.isEmpty()) {
                 editText_budget.error = getString(R.string.budget_required_text)
                 editText_budget.requestFocus()
             } else {
-                viewModel.insertBudget(category, iconIndex)
+                viewModel.insertBudget(Integer.parseInt(budget), category, iconIndex)
                 activity?.onBackPressed()
                 Toast.makeText(activity, getString(R.string.budget_saved_text), Toast.LENGTH_SHORT).show()
 

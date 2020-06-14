@@ -16,11 +16,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/budget_item"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="100dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/budget_list_background"
+        android:background="@android:color/white"
         android:onClick="@{() -> clickListener.onClick(budget)}">
 
         <TextView
@@ -28,23 +26,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/roboto"
             android:text="@{budget.category}"
             android:textColor="@android:color/black"
-            app:layout_constraintStart_toEndOf="@+id/budget_category_image"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/progressBar"
+            app:layout_constraintStart_toEndOf="@+id/budget_category_image" />
 
         <TextView
             android:id="@+id/budget_amount_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="5dp"
-            android:text="@{@string/text_amount(budget.amount)}"
+            android:layout_marginBottom="8dp"
+            android:text="@{java.text.NumberFormat.getIntegerInstance().format(budget.budget)}"
             android:textColor="@android:color/black"
-            app:layout_constraintEnd_toStartOf="@id/text_GTQ"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/progressBar"
+            app:layout_constraintEnd_toStartOf="@id/text_GTQ" />
+
+<!--        android:text="@{Integer.toString(budget.budget)}"-->
 
 
         <ImageView
@@ -62,57 +64,51 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:max="@{Integer.parseInt(budget.amount)}"
-            android:progress="@{Integer.parseInt(budget.expense)}"
+            android:max="@{budget.budget}"
+            android:progress="@{budget.expense}"
+            android:scaleY="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/budget_category_image" />
+            app:layout_constraintStart_toEndOf="@+id/budget_category_image"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/budget_expense_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="5dp"
-            android:text="@{@string/text_amount(budget.expense)}"
-            android:textColor="@android:color/black"
-            app:layout_constraintEnd_toStartOf="@+id/text_slash"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/text_expense"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/text_expenses"
-            android:textColor="@android:color/black"
-            app:layout_constraintEnd_toStartOf="@+id/budget_expense_text"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginBottom="8dp"
+            android:text="@{Integer.toString(budget.expense)}"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/progressBar"
+            app:layout_constraintEnd_toStartOf="@+id/text_slash" />
 
         <TextView
             android:id="@+id/text_GTQ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             android:text="GTQ"
             android:textColor="@android:color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/progressBar"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/text_slash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="5dp"
+            android:layout_marginBottom="8dp"
             android:text="/"
             android:textColor="@android:color/black"
-            app:layout_constraintEnd_toStartOf="@id/budget_amount_text"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/progressBar"
+            app:layout_constraintEnd_toStartOf="@id/budget_amount_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

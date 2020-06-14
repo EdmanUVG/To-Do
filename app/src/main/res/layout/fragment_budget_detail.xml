@@ -13,20 +13,22 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#F3F3F8">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F6F9FE"
             tools:context=".ui.budgetdetail.BudgetDetailFragment">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
+                android:layout_height="180dp"
                 android:layout_marginTop="56dp"
-                android:background="#F3F3F8"
+                android:background="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -35,23 +37,22 @@
                     android:id="@+id/text_budget_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{@string/text_amount(viewModel.budget.amount)}"
+                    android:layout_marginTop="24dp"
+                    android:text="@{java.text.NumberFormat.getIntegerInstance().format(viewModel.budget.budget)}"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
-                    android:textSize="56sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textSize="30sp"
+                    android:textStyle="normal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-
                 <ImageView
                     android:id="@+id/image_edit"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="35dp"
                     app:layout_constraintStart_toEndOf="@+id/text_budget_amount"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_edit" />
@@ -60,22 +61,116 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="24dp"
                     android:text="Q"
-                    android:textSize="40sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textSize="24sp"
                     app:layout_constraintEnd_toStartOf="@+id/text_budget_amount"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar2"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="16dp"
+                    android:max="@{viewModel.budget.budget}"
+                    android:progress="@{viewModel.budget.expense}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_budget_amount" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Gastado"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:text="GTQ"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toEndOf="@+id/textView9"
+                    app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
+
+                <TextView
+                    android:id="@+id/budget_expense_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@{java.text.NumberFormat.getIntegerInstance().format(viewModel.budget.expense)}"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toEndOf="@+id/textView15"
+                    app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
+
+                <TextView
+                    android:id="@+id/budget_remaining_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{java.text.NumberFormat.getIntegerInstance().format(viewModel.budget.budget-viewModel.budget.expense)}"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="GTQ"
+                    app:layout_constraintEnd_toStartOf="@+id/budget_remaining_text"
+                    app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Resto"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toStartOf="@+id/textView21"
+                    app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/line_chart_container"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="320dp"
                 android:layout_marginTop="8dp"
                 android:background="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/line_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="230dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="@+id/text_id"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView23">
+
+                </com.github.mikephil.charting.charts.LineChart>
 
                 <TextView
                     android:id="@+id/text_id"
@@ -85,6 +180,18 @@
                     android:text="@{@string/text_id(viewModel.budget.budgetId)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Junio"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

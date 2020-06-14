@@ -17,6 +17,7 @@ import com.example.walletsaver.databinding.FragmentBudgetEditBinding
 import com.example.walletsaver.ui.budgetdetail.BudgetDetailFragmentArgs
 import com.example.walletsaver.ui.budgetdetail.BudgetDetailViewModel
 import com.example.walletsaver.ui.budgetdetail.BudgetDetailViewModelFactory
+import kotlinx.android.synthetic.main.fragment_budget_edit.*
 
 class BudgetEditFragment : Fragment() {
 
@@ -28,6 +29,8 @@ class BudgetEditFragment : Fragment() {
                                 savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_budget_edit, container, false)
+
+        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_clear)
 
         setHasOptionsMenu(true)
 
@@ -61,7 +64,10 @@ class BudgetEditFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_save) {
-            viewModel.updateBudget()
+
+            val budget = editText_edit.text.toString().trim()
+
+            viewModel.updateBudget(Integer.parseInt(budget))
             activity?.onBackPressed()
             Toast.makeText(activity, "Updated", Toast.LENGTH_SHORT).show()
 

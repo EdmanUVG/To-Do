@@ -31,13 +31,12 @@
 
 
                 <EditText
-                    android:id="@+id/editText"
+                    android:id="@+id/editText_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="@{viewModel.budget.amount}"
+                    android:hint="@{Integer.toString(viewModel.budget.budget)}"
                     android:inputType="number"
-                    android:text="@={viewModel.amount}"
                     android:textAlignment="center"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -54,7 +53,7 @@
                     android:text="Q"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/editText"
+                    app:layout_constraintEnd_toStartOf="@+id/editText_edit"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

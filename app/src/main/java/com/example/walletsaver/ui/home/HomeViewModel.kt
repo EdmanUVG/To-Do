@@ -11,6 +11,12 @@ class HomeViewModel(val database: BudgetDatabaseDao) : ViewModel() {
 
     val rowsCount = database.getRowsCount()
 
+    val sumOfIncomes = database.getSumOfIncomes()
+
+    val sumOfExpenses = database.getSumOfExpenses()
+
+    val sumOfBudgets = database.getSumOfBudgets()
+
 
     private val _budgetClicked = MutableLiveData<Long>()
     val budgetClicked: LiveData<Long>

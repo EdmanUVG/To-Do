@@ -1,5 +1,6 @@
 package com.example.walletsaver.ui.budgetdetail
 
+import android.graphics.Color
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.*
@@ -16,14 +17,19 @@ import com.example.walletsaver.R
 import com.example.walletsaver.database.BudgetDatabase
 import com.example.walletsaver.databinding.FragmentBudgetDetailBinding
 import com.example.walletsaver.ui.home.HomeFragmentDirections
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import kotlinx.android.synthetic.main.fragment_add_budget.*
 import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 
 class BudgetDetailFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = BudgetDetailFragment()
-    }
+    private lateinit var lineChart: LineChart
 
     private lateinit var viewModel: BudgetDetailViewModel
     private lateinit var binding: FragmentBudgetDetailBinding
@@ -33,6 +39,8 @@ class BudgetDetailFragment : Fragment() {
                                 savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_budget_detail, container, false)
+
+        lineChart = binding.lineChart
 
         setHasOptionsMenu(true)
 
@@ -70,6 +78,42 @@ class BudgetDetailFragment : Fragment() {
         viewModel.budget.observe(viewLifecycleOwner, Observer {
             (activity as AppCompatActivity).supportActionBar?.title = viewModel.budget.value?.category
         })
+
+        lineChart.setDragEnabled(true)
+        lineChart.setScaleEnabled(false)
+
+        lineChart.getAxisRight().setEnabled(false)
+        lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM)
+
+
+        val yValues = ArrayList<Entry>()
+
+        yValues.add(Entry(0f, 60f))
+        yValues.add(Entry(1f, 50f))
+        yValues.add(Entry(2f, 70f))
+        yValues.add(Entry(3f, 30f))
+
+        val set1 = LineDataSet(yValues, "Gastos")
+
+        set1.setFillColor(Color.RED)
+        set1.setDrawFilled(true)
+
+        set1.setFillAlpha(85)
+        set1.setColor(Color.RED)
+        set1.setLineWidth(2f)
+        set1.setValueTextSize(0f)
+        set1.setCircleColor(Color.RED)
+        set1.enableDashedLine(3f, 2f, 0f)
+
+
+
+        val dataSets = ArrayList<ILineDataSet>()
+        dataSets.add(set1)
+
+        val data = LineData(dataSets)
+
+        lineChart.setData(data)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

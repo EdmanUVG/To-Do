@@ -60,6 +60,6 @@
     <fragment
         android:id="@+id/settings_fragment"
         android:name="com.example.walletsaver.ui.settings.SettingsFragment"
-        android:label="fragment_settings"
+        android:label="@string/text_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

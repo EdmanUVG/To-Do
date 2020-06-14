@@ -8,19 +8,17 @@ import kotlinx.coroutines.*
 
 class AddIncomeViewModel(val database: BudgetDatabaseDao) : ViewModel() {
 
-    val income = MutableLiveData<String>()
-
-    val viewModelJob = Job()
+    private val viewModelJob = Job()
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    fun addIncome(category: String) {
+    fun addIncome(income: Int, category: String) {
         uiScope.launch {
-            income.value?.let { update(it, category) }
+            update(income, category)
         }
     }
 
-    private suspend fun update(income: String, category: String) {
+    private suspend fun update(income: Int, category: String) {
         withContext(Dispatchers.IO) {
             database.addIncome(income, category)
         }

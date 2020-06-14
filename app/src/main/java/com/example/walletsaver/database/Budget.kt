@@ -12,14 +12,14 @@ data class Budget (
     @ColumnInfo(name = "id")
     var budgetId: Long = 0L,
 
-    var amount: String,
+    var budget: Int,
 
     val category: String,
 
     @Nullable
     val iconIndex: Int,
 
-    var income: String,
+    var income: Int,
 
-    var expense: String
+    var expense: Int
 )
