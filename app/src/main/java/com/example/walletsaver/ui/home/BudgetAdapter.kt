@@ -1,18 +1,14 @@
 package com.example.walletsaver.ui.home
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.walletsaver.R
-import com.example.walletsaver.database.Budget
-import com.example.walletsaver.databinding.BudgetItemLayoutBinding
+import com.example.walletsaver.database.Task
+import com.example.walletsaver.databinding.TaskItemLayoutBinding
 
-class BudgetAdapter (val listener: BudgetClickListener): ListAdapter<Budget, BudgetAdapter.ViewHolder>(BudgetDiffCallback())  {
+class BudgetAdapter (val listener: BudgetClickListener): ListAdapter<Task, BudgetAdapter.ViewHolder>(BudgetDiffCallback())  {
 
     override fun onBindViewHolder(holder: BudgetAdapter.ViewHolder, position: Int) {
         val item = getItem(position)
@@ -23,10 +19,10 @@ class BudgetAdapter (val listener: BudgetClickListener): ListAdapter<Budget, Bud
         return BudgetAdapter.ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: BudgetItemLayoutBinding)
+    class ViewHolder private constructor(val binding: TaskItemLayoutBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(clickListener: BudgetClickListener, item:Budget) {
+        fun bind(clickListener: BudgetClickListener, item:Task) {
             binding.budget = item
             binding.clickListener = clickListener
             binding.executePendingBindings()
@@ -35,7 +31,7 @@ class BudgetAdapter (val listener: BudgetClickListener): ListAdapter<Budget, Bud
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = BudgetItemLayoutBinding.inflate(layoutInflater, parent, false)
+                val binding = TaskItemLayoutBinding.inflate(layoutInflater, parent, false)
 
                 return ViewHolder(binding)
             }
@@ -43,16 +39,16 @@ class BudgetAdapter (val listener: BudgetClickListener): ListAdapter<Budget, Bud
     }
 }
 
-class BudgetDiffCallback: DiffUtil.ItemCallback<Budget>() {
-    override fun areItemsTheSame(oldItem: Budget, newItem: Budget): Boolean {
+class BudgetDiffCallback: DiffUtil.ItemCallback<Task>() {
+    override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
         return oldItem.budgetId == newItem.budgetId
     }
 
-    override fun areContentsTheSame(oldItem: Budget, newItem: Budget): Boolean {
+    override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {
         return oldItem == newItem
     }
 }
 
 class BudgetClickListener(val clickListener: (budgetid: Long) -> Unit) {
-    fun onClick(budget: Budget) = clickListener(budget.budgetId)
+    fun onClick(task: Task) = clickListener(task.budgetId)
 }

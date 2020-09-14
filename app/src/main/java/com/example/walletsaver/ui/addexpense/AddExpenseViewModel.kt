@@ -1,12 +1,10 @@
 package com.example.walletsaver.ui.addexpense
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.walletsaver.database.Budget
-import com.example.walletsaver.database.BudgetDatabaseDao
+import com.example.walletsaver.database.TaskDatabaseDao
 import kotlinx.coroutines.*
 
-class AddExpenseViewModel(val database: BudgetDatabaseDao) : ViewModel() {
+class AddExpenseViewModel(val database: TaskDatabaseDao) : ViewModel() {
 
     val viewModelJob = Job()
 

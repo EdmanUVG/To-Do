@@ -1,12 +1,12 @@
-package com.example.walletsaver.ui.budgetdetail
+package com.example.walletsaver.ui.taskdetail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.walletsaver.database.BudgetDatabaseDao
+import com.example.walletsaver.database.TaskDatabaseDao
 import kotlinx.coroutines.*
 
-class BudgetDetailViewModel(val database: BudgetDatabaseDao, val budgetId: Long) : ViewModel() {
+class BudgetDetailViewModel(val database: TaskDatabaseDao, val budgetId: Long) : ViewModel() {
 
     val budget = database.getBudget(budgetId)
 

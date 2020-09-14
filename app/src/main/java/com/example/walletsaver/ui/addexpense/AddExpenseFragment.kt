@@ -3,15 +3,16 @@ package com.example.walletsaver.ui.addexpense
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.walletsaver.R
-import com.example.walletsaver.database.BudgetDatabase
+import com.example.walletsaver.database.WalletDatabase
 import com.example.walletsaver.databinding.FragmentAddExpenseBinding
 import com.google.android.material.chip.Chip
-import kotlinx.android.synthetic.main.fragment_add_budget.*
+import kotlinx.android.synthetic.main.fragment_add_task.*
 import kotlinx.android.synthetic.main.fragment_add_expense.*
 import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 
@@ -30,6 +31,8 @@ class AddExpenseFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_expense, container, false)
 
+        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_clear)
+
         setHasOptionsMenu(true)
 
         return binding.root
@@ -42,7 +45,7 @@ class AddExpenseFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
 
-        val dataSource = BudgetDatabase.getInstance(application).budgetDatabaseDao
+        val dataSource = WalletDatabase.getInstance(application).taskDatabaseDao
 
         viewModelFactory = AddExpenseViewModelFactory(dataSource)
         viewModel = ViewModelProvider(this, viewModelFactory).get(AddExpenseViewModel::class.java)

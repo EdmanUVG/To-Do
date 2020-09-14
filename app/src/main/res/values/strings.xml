@@ -18,7 +18,7 @@
     <string name="income_saved_text">¡Ingreso guardado!</string>
     <string name="expense_saved_text">¡Gasto guardado!</string>
 
-<!--    <integer name="progress_max"></integer>-->
+    <!--    <integer name="progress_max"></integer>-->
 
     <string name="text_amount">%1$d</string>
     <string name="text_id">%1$d</string>
@@ -28,15 +28,31 @@
     <string name="text_settings">Ajustes</string>
 
 
-    <string name="home_category_text">Hogar</string>
-    <string name="education_category_text">Educación</string>
-    <string name="transportation_category_text">Transporte</string>
-    <string name="finance_category_text">Finanzas</string>
-    <string name="food_category_text">Alimentos</string>
-    <string name="entertainment_category_text">Entretenimiento</string>
+    <string name="home_category_text">R</string>
+    <string name="education_category_text">G</string>
+    <string name="transportation_category_text">B</string>
+    <string name="finance_category_text">N</string>
+    <string name="food_category_text">M</string>
+    <string name="entertainment_category_text">E</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--    Settings fragment-->
+    <string name="user_image_description_text">Imagen para representar foto de usuario</string>
+    <string name="user_login_button_text">Ingresar</string>
+
+    <string name="dark_theme_text">Tema oscuro</string>
+    <string name="dark_theme_description_text">Paleta de colores para representar temas de pantalla</string>
+
+    <string name="fingerprint_text">Activar huella</string>
+    <string name="fingerprint_description_text">Imagen que representar una huella</string>
+
+    <string name="privacy_text">Política de privacidad</string>
+    <string name="privacy_description_text">Imagen que representar los terminos y privacidad</string>
+
+    <string name="support_text">Soporte</string>
+    <string name="support_description_text">Imagen que representar soporte y ayuda</string>
 
 
 </resources>

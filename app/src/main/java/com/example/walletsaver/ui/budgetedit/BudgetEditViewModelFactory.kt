@@ -2,9 +2,9 @@ package com.example.walletsaver.ui.budgetedit
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.walletsaver.database.BudgetDatabaseDao
+import com.example.walletsaver.database.TaskDatabaseDao
 
-class BudgetEditViewModelFactory (private val database: BudgetDatabaseDao,
+class BudgetEditViewModelFactory (private val database: TaskDatabaseDao,
                                   private val budgetId: Long): ViewModelProvider.Factory{
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

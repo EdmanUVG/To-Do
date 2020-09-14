@@ -95,6 +95,9 @@ dependencies {
     // MP Android Chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+    // Biometric Auth
+    implementation 'androidx.biometric:biometric:1.0.1'
+
     // Lifecycle
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'

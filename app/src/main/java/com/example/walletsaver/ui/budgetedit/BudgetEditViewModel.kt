@@ -1,12 +1,13 @@
 package com.example.walletsaver.ui.budgetedit
 
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.walletsaver.database.Budget
-import com.example.walletsaver.database.BudgetDatabaseDao
+import com.example.walletsaver.database.Task
+import com.example.walletsaver.database.TaskDatabaseDao
 import kotlinx.coroutines.*
 
-class BudgetEditViewModel(val database: BudgetDatabaseDao, val budgetId: Long) : ViewModel() {
+class BudgetEditViewModel(val database: TaskDatabaseDao, val budgetId: Long) : ViewModel() {
 
     val budget = database.getBudget(budgetId)
 
@@ -16,19 +17,19 @@ class BudgetEditViewModel(val database: BudgetDatabaseDao, val budgetId: Long) :
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    fun updateBudget(amount: Int) {
+    fun updateBudget(amount: String) {
         val prep = budget.value
         uiScope.launch {
             update(prep?.let {
-                Budget(budgetId = it.budgetId, category = it.category, budget = amount ?: it.budget,
+                Task(budgetId = it.budgetId, tag = it.tag, task = amount ?: it.task,
                 iconIndex = it.iconIndex, income = it.income, expense = it.expense)
             })
         }
     }
 
-    private suspend fun update(budget: Budget?) {
+    private suspend fun update(task: Task?) {
         withContext(Dispatchers.IO) {
-            budget?.let {
+            task?.let {
                 database.update(it)
             }
         }

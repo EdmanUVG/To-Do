@@ -1,27 +1,27 @@
-package com.example.walletsaver.ui.addbudget
+package com.example.walletsaver.ui.addtask
 
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources.getColorStateList
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.walletsaver.R
-import com.example.walletsaver.database.BudgetDatabase
-import com.example.walletsaver.databinding.FragmentAddBudgetBinding
+import com.example.walletsaver.database.WalletDatabase
+import com.example.walletsaver.databinding.FragmentAddTaskBinding
 import com.google.android.material.chip.Chip
 import com.santalu.maskedittext.MaskEditText
-import kotlinx.android.synthetic.main.fragment_add_budget.*
+import kotlinx.android.synthetic.main.fragment_add_task.*
 import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 
-class AddBudgetFragment : Fragment() {
+class AddTaskFragment : Fragment() {
 
-    private lateinit var viewModel: AddBudgetViewModel
-    private lateinit var viewModelFactory: AddBudgetViewModelFactory
+    private lateinit var viewModel: AddTaskViewModel
+    private lateinit var viewModelFactory: AddTaskViewModelFactory
 
-    private lateinit var binding: FragmentAddBudgetBinding
+    private lateinit var binding: FragmentAddTaskBinding
 
     private lateinit var maskEditText: MaskEditText
 
@@ -33,7 +33,9 @@ class AddBudgetFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                 savedInstanceState: Bundle?): View? {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_budget, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_task, container, false)
+
+        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_clear)
 
         setHasOptionsMenu(true)
 
@@ -47,10 +49,10 @@ class AddBudgetFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
 
-        val dataSource = BudgetDatabase.getInstance(application).budgetDatabaseDao
+        val dataSource = WalletDatabase.getInstance(application).taskDatabaseDao
 
-        viewModelFactory = AddBudgetViewModelFactory(dataSource)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(AddBudgetViewModel::class.java)
+        viewModelFactory = AddTaskViewModelFactory(dataSource)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(AddTaskViewModel::class.java)
 
         val chipGroup = binding.budgetList
 
@@ -146,11 +148,12 @@ class AddBudgetFragment : Fragment() {
 
             val budget = editText_budget.text.toString().trim().replace(",", "")
 
+            
             if (budget.isEmpty()) {
                 editText_budget.error = getString(R.string.budget_required_text)
                 editText_budget.requestFocus()
             } else {
-                viewModel.insertBudget(Integer.parseInt(budget), category, iconIndex)
+                viewModel.insertBudget(budget, category, iconIndex)
                 activity?.onBackPressed()
                 Toast.makeText(activity, getString(R.string.budget_saved_text), Toast.LENGTH_SHORT).show()
 

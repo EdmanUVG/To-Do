@@ -2,10 +2,10 @@ package com.example.walletsaver.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.walletsaver.database.BudgetDatabaseDao
+import com.example.walletsaver.database.TaskDatabaseDao
 import java.lang.IllegalArgumentException
 
-class HomeViewModelFactory(private val database: BudgetDatabaseDao): ViewModelProvider.Factory {
+class HomeViewModelFactory(private val database: TaskDatabaseDao): ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {

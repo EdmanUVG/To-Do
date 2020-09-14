@@ -6,5 +6,7 @@
         android:id="@+id/action_save"
         android:icon="@drawable/ic_save"
         android:title="Item"
+        android:background="?android:attr/selectableItemBackground"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
         app:showAsAction="always"/>
 </menu>

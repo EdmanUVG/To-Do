@@ -14,26 +14,25 @@
             android:id="@+id/action_navigation_home_to_budget_detail_fragment"
             app:destination="@id/budget_detail_fragment" />
         <action
-            android:id="@+id/action_navigation_home_to_tab_holder_fragment"
-            app:destination="@id/tab_holder_fragment" />
-        <action
             android:id="@+id/action_navigation_home_to_settings_fragment"
-            app:destination="@id/settings_fragment" />
+            app:destination="@id/settings_fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_navigation_home_to_add_task_fragment"
+            app:destination="@id/add_task_fragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.walletsaver.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
-    <fragment
-        android:id="@+id/add_budget_fragment"
-        android:name="com.example.walletsaver.ui.addbudget.AddBudgetFragment"
+        android:id="@+id/add_task_fragment"
+        android:name="com.example.walletsaver.ui.addtask.AddTaskFragment"
         android:label="Add Budget"
-        tools:layout="@layout/fragment_add_budget" />
+        tools:layout="@layout/fragment_add_task" />
     <fragment
         android:id="@+id/budget_detail_fragment"
-        android:name="com.example.walletsaver.ui.budgetdetail.BudgetDetailFragment"
+        android:name="com.example.walletsaver.ui.taskdetail.BudgetDetailFragment"
         android:label="fragment_budget_detail"
         tools:layout="@layout/fragment_budget_detail" >
         <argument
@@ -53,13 +52,26 @@
             app:argType="long" />
     </fragment>
     <fragment
-        android:id="@+id/tab_holder_fragment"
-        android:name="com.example.walletsaver.ui.tabs.TabHolderFragment"
-        android:label="Agregar"
-        tools:layout="@layout/fragment_tab_holder" />
-    <fragment
         android:id="@+id/settings_fragment"
         android:name="com.example.walletsaver.ui.settings.SettingsFragment"
         android:label="@string/text_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settings_fragment_to_help_fragment"
+            app:destination="@id/help_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/help_fragment"
+        android:name="com.example.walletsaver.ui.help.HelpFragment"
+        android:label="Ayuda"
+        tools:layout="@layout/fragment_help">
+        <action
+            android:id="@+id/action_help_fragment_to_app_info_fragment"
+            app:destination="@id/app_info_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/app_info_fragment"
+        android:name="com.example.walletsaver.ui.help.AppInfoFragment"
+        android:label="AppInfoFragment"
+        tools:layout="@layout/fragment_app_info"/>
 </navigation>

@@ -7,4 +7,8 @@
 
     <color name="colorGreen">#00FF00</color>
 
+    <color name="navigationBarColor">#FFFFFF</color>
+
+    <color name="homeBackgroundColor">#F6F8FC</color>
+
 </resources>

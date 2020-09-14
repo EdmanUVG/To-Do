@@ -1,12 +1,10 @@
 package com.example.walletsaver.ui.addincome
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.example.walletsaver.database.BudgetDatabaseDao
+import com.example.walletsaver.database.TaskDatabaseDao
 import kotlinx.coroutines.*
 
-class AddIncomeViewModel(val database: BudgetDatabaseDao) : ViewModel() {
+class AddIncomeViewModel(val database: TaskDatabaseDao) : ViewModel() {
 
     private val viewModelJob = Job()
 

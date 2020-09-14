@@ -3,20 +3,24 @@ package com.example.walletsaver.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.walletsaver.database.BudgetDatabaseDao
+import com.example.walletsaver.database.TaskDatabaseDao
+import kotlinx.coroutines.*
 
-class HomeViewModel(val database: BudgetDatabaseDao) : ViewModel() {
+class HomeViewModel(val databaseUser: TaskDatabaseDao) : ViewModel() {
 
-    val budgets = database.getBudgets()
+    val budgets = databaseUser.getBudgets()
 
-    val rowsCount = database.getRowsCount()
+    val rowsCount = databaseUser.getRowsCount()
 
-    val sumOfIncomes = database.getSumOfIncomes()
+    val sumOfIncomes = databaseUser.getSumOfIncomes()
 
-    val sumOfExpenses = database.getSumOfExpenses()
+    val sumOfExpenses = databaseUser.getSumOfExpenses()
 
-    val sumOfBudgets = database.getSumOfBudgets()
+    val sumOfBudgets = databaseUser.getSumOfBudgets()
 
+    private val viewModelJob = Job()
+
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     private val _budgetClicked = MutableLiveData<Long>()
     val budgetClicked: LiveData<Long>
@@ -29,5 +33,10 @@ class HomeViewModel(val database: BudgetDatabaseDao) : ViewModel() {
 
     fun onBudgetClickedCompleted() {
         _budgetClicked.value = null
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 }

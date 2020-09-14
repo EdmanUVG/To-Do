@@ -4,25 +4,29 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
-interface BudgetDatabaseDao {
+interface TaskDatabaseDao {
 
     @Insert
-    fun insert(budget: Budget)
+    fun insert(task: Task)
 
     @Update
-    fun update(budget: Budget)
-
-    @Query("UPDATE budget_table SET expense = :expense WHERE category = :category")
-    fun updateBudget(expense: Int, category: String)
-
-    @Query("UPDATE budget_table SET income = :income WHERE category = :category")
-    fun addIncome(income: Int, category: String)
+    fun update(task: Task)
 
     @Delete
-    fun delete(budget: Budget)
+    fun delete(task: Task)
+
+    // New Code here
+
+    @Query("UPDATE budget_table SET expense = :expense WHERE tag = :category")
+    fun updateBudget(expense: Int, category: String)
+
+    @Query("UPDATE budget_table SET income = :income WHERE tag = :category")
+    fun addIncome(income: Int, category: String)
+
+
 
     @Query("SELECT * FROM budget_table WHERE id = :key")
-    fun getBudget(key: Long): LiveData<Budget>
+    fun getBudget(key: Long): LiveData<Task>
 
     @Query("SELECT COUNT(id) FROM budget_table")
     fun getRowsCount(): LiveData<Int>
@@ -33,10 +37,10 @@ interface BudgetDatabaseDao {
     @Query("SELECT SUM(expense) FROM budget_table")
     fun getSumOfExpenses(): LiveData<Int>
 
-    @Query("SELECT SUM(budget) FROM budget_table")
+    @Query("SELECT SUM(task) FROM budget_table")
     fun getSumOfBudgets(): LiveData<Int>
 
 
     @Query("SELECT * FROM budget_table ORDER BY id DESC")
-    fun getBudgets(): LiveData<List<Budget>>
+    fun getBudgets(): LiveData<List<Task>>
 }

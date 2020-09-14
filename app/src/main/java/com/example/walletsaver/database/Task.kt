@@ -7,19 +7,20 @@ import androidx.room.PrimaryKey
 import java.sql.Date
 
 @Entity(tableName = "budget_table")
-data class Budget (
+data class Task (
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var budgetId: Long = 0L,
 
-    var budget: Int,
+    val tag: String,
 
-    val category: String,
+    val task: String,
 
-    @Nullable
-    val iconIndex: Int,
+    val income: Int,
 
-    var income: Int,
+    val expense: Int,
 
-    var expense: Int
+    val iconIndex: Int
+
 )

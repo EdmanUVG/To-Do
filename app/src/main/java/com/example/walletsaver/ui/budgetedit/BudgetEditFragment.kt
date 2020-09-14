@@ -1,28 +1,21 @@
 package com.example.walletsaver.ui.budgetedit
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 
 import com.example.walletsaver.R
-import com.example.walletsaver.database.BudgetDatabase
+import com.example.walletsaver.database.WalletDatabase
 import com.example.walletsaver.databinding.FragmentBudgetEditBinding
-import com.example.walletsaver.ui.budgetdetail.BudgetDetailFragmentArgs
-import com.example.walletsaver.ui.budgetdetail.BudgetDetailViewModel
-import com.example.walletsaver.ui.budgetdetail.BudgetDetailViewModelFactory
-import kotlinx.android.synthetic.main.fragment_budget_edit.*
 
 class BudgetEditFragment : Fragment() {
 
     private lateinit var binding: FragmentBudgetEditBinding
-    private lateinit var viewModel: BudgetEditViewModel
+//    private lateinit var viewModel: BudgetEditViewModel
     private lateinit var viewModelFactory: BudgetEditViewModelFactory
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -43,18 +36,18 @@ class BudgetEditFragment : Fragment() {
         binding.lifecycleOwner = this
 
         val application = requireNotNull(this.activity).application
-        val dataSource = BudgetDatabase.getInstance(application).budgetDatabaseDao
+        val dataSource = WalletDatabase.getInstance(application).taskDatabaseDao
 
         val budgetViewFragmentArgs by navArgs<BudgetEditFragmentArgs>()
 
-        viewModelFactory = BudgetEditViewModelFactory(dataSource, budgetViewFragmentArgs.budgetId)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(BudgetEditViewModel::class.java)
-
-        binding.viewModel = viewModel
-
-        viewModel.budget.observe(viewLifecycleOwner, Observer {
-            (activity as AppCompatActivity).supportActionBar?.title = viewModel.budget.value?.category
-        })
+//        viewModelFactory = BudgetEditViewModelFactory(dataSource, budgetViewFragmentArgs.budgetId)
+//        viewModel = ViewModelProvider(this, viewModelFactory).get(BudgetEditViewModel::class.java)
+//
+//        binding.viewModel = viewModel
+//
+//        viewModel.budget.observe(viewLifecycleOwner, Observer {
+//            (activity as AppCompatActivity).supportActionBar?.title = viewModel.budget.value?.category
+//        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -65,10 +58,11 @@ class BudgetEditFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_save) {
 
-            val budget = editText_edit.text.toString().trim()
+//            val budget = editText_edit.text.toString().trim()
 
-            viewModel.updateBudget(Integer.parseInt(budget))
-            activity?.onBackPressed()
+//            viewModel.updateBudget(Integer.parseInt(budget))
+//            viewModel.updateBudget(40)
+//            activity?.onBackPressed()
             Toast.makeText(activity, "Updated", Toast.LENGTH_SHORT).show()
 
         }
