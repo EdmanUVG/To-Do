@@ -8,11 +8,11 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.walletsaver.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
+        android:label="Edman Cota"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_budget_detail_fragment"
-            app:destination="@id/budget_detail_fragment" />
+            app:destination="@id/task_detail_fragment" />
         <action
             android:id="@+id/action_navigation_home_to_settings_fragment"
             app:destination="@id/settings_fragment"
@@ -20,21 +20,13 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
-            android:id="@+id/action_navigation_home_to_add_task_fragment"
-            app:destination="@id/add_task_fragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/add_task_fragment"
-        android:name="com.example.walletsaver.ui.addtask.AddTaskFragment"
-        android:label="Add Budget"
-        tools:layout="@layout/fragment_add_task" />
-    <fragment
-        android:id="@+id/budget_detail_fragment"
-        android:name="com.example.walletsaver.ui.taskdetail.BudgetDetailFragment"
-        android:label="fragment_budget_detail"
-        tools:layout="@layout/fragment_budget_detail" >
+        android:id="@+id/task_detail_fragment"
+        android:name="com.example.walletsaver.ui.taskdetail.TaskDetailFragment"
+        android:label="Task"
+        tools:layout="@layout/fragment_task_detail">
         <argument
             android:name="budgetId"
             app:argType="long" />

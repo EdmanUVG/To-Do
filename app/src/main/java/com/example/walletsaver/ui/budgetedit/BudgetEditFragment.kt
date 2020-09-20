@@ -1,5 +1,6 @@
 package com.example.walletsaver.ui.budgetedit
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -11,6 +12,10 @@ import androidx.navigation.fragment.navArgs
 import com.example.walletsaver.R
 import com.example.walletsaver.database.WalletDatabase
 import com.example.walletsaver.databinding.FragmentBudgetEditBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.bottom_sheet_priority.view.*
+import kotlinx.android.synthetic.main.fragment_task_detail.*
 
 class BudgetEditFragment : Fragment() {
 
@@ -39,6 +44,9 @@ class BudgetEditFragment : Fragment() {
         val dataSource = WalletDatabase.getInstance(application).taskDatabaseDao
 
         val budgetViewFragmentArgs by navArgs<BudgetEditFragmentArgs>()
+
+
+
 
 //        viewModelFactory = BudgetEditViewModelFactory(dataSource, budgetViewFragmentArgs.budgetId)
 //        viewModel = ViewModelProvider(this, viewModelFactory).get(BudgetEditViewModel::class.java)

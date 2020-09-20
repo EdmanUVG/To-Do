@@ -37,7 +37,9 @@ class BudgetAdapter (val listener: BudgetClickListener): ListAdapter<Task, Budge
             }
         }
     }
+
 }
+
 
 class BudgetDiffCallback: DiffUtil.ItemCallback<Task>() {
     override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {

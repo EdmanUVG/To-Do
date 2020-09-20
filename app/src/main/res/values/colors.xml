@@ -11,4 +11,10 @@
 
     <color name="homeBackgroundColor">#F6F8FC</color>
 
+    <color name="urgent_color">#FA2323</color>
+    <color name="high_color">#FFBD5A</color>
+    <color name="low_color">#808080</color>
+
+    <color name="colorText">#222222</color>
+
 </resources>

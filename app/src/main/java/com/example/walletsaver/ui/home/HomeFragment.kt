@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.Manifest
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.pm.PackageManager
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -16,7 +17,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.walletsaver.R
 import com.example.walletsaver.database.WalletDatabase
 import com.example.walletsaver.databinding.FragmentHomeBinding
-import com.github.mikephil.charting.charts.PieChart
+import com.example.walletsaver.ui.budgetedit.BottomSheetFragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.android.synthetic.main.bottom_sheet_add_task.*
+import kotlinx.android.synthetic.main.bottom_sheet_add_task.view.*
+import kotlinx.android.synthetic.main.bottom_sheet_filter_layout.view.*
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -27,9 +35,10 @@ class HomeFragment : Fragment() {
     private val STORAGE_REQUEST_CODE = 101
     private val TAG = "PermissionDemo"
 
-    var esVisible = true
+    var formater = SimpleDateFormat("MMM dd", Locale.US)
 
-    private lateinit var pieChart: PieChart
+    var esVisible = true
+    private var dueDate = ""
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -70,11 +79,23 @@ class HomeFragment : Fragment() {
 
         binding.budgetList.adapter = adapter
 
-        viewModel.budgets.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                adapter.submitList(it)
+        // Will display the list in the order selected
+        viewModel.isSorted.observe(viewLifecycleOwner, Observer { isSorted ->
+            if (isSorted) {
+                viewModel.tasksByPriority.observe(viewLifecycleOwner, Observer {
+                    it?.let {
+                        adapter.submitList(it)
+                    }
+                })
+            } else {
+                viewModel.tasks.observe(viewLifecycleOwner, Observer {
+                    it?.let {
+                        adapter.submitList(it)
+                    }
+                })
             }
         })
+
 
         viewModel.rowsCount.observe(viewLifecycleOwner, Observer { count ->
             if (count == 0) {
@@ -110,7 +131,8 @@ class HomeFragment : Fragment() {
                 STORAGE_REQUEST_CODE)
             }
         } else {
-            findNavController().navigate(R.id.action_navigation_home_to_add_task_fragment)
+            val mBottomSheetFragment = BottomSheetAddTask()
+            mBottomSheetFragment.show(requireActivity().supportFragmentManager, "MY_BOTTOM_SHEET")
         }
     }
 
@@ -122,7 +144,8 @@ class HomeFragment : Fragment() {
 
                 if((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)){
                     // Do the task now
-                    findNavController().navigate(R.id.action_navigation_home_to_add_task_fragment)
+                    val mBottomSheetFragment = BottomSheetAddTask()
+                    mBottomSheetFragment.show(requireActivity().supportFragmentManager, "MY_BOTTOM_SHEET")
                 }else{
                     Toast.makeText(activity, "Permissions denied.", Toast.LENGTH_SHORT).show()
                 }
@@ -131,15 +154,41 @@ class HomeFragment : Fragment() {
         }
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        super.onCreateOptionsMenu(menu, inflater)
-//        inflater.inflate(R.menu.settings_menu, menu)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        if (item.itemId == R.id.action_settings) {
-//            findNavController().navigate(R.id.action_navigation_home_to_settings_fragment)
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.home_nav_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_settings) {
+            findNavController().navigate(R.id.action_navigation_home_to_settings_fragment)
+        }
+        if (item.itemId == R.id.action_share) {
+            val mBottomSheetFragment = BottomSheetAddTask()
+            mBottomSheetFragment.show(requireActivity().supportFragmentManager, "MY_BOTTOM_SHEET")
+        }
+
+        if (item.itemId == R.id.action_filter) {
+            showBottomSheetDialog()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun showBottomSheetDialog() {
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_filter_layout, null)
+        val dialog = context?.let { BottomSheetDialog(it) }
+
+        dialog?.setContentView(view)
+
+        view.viewPriority.setOnClickListener {
+            viewModel.onPriorityClicked()
+            dialog?.dismiss()
+        }
+        view.viewNone.setOnClickListener {
+            viewModel.onNoPriorityClicked()
+            dialog?.dismiss()
+        }
+        
+        dialog?.show()
+    }
 }

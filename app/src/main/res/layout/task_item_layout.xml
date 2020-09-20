@@ -16,96 +16,107 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/budget_item"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_height="55dp"
         android:background="@drawable/budget_list_background"
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:onClick="@{() -> clickListener.onClick(budget)}">
 
         <TextView
             android:id="@+id/budget_category_text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
             android:fontFamily="@font/roboto"
             android:text="@{budget.task}"
-            android:textAllCaps="true"
-            android:textColor="@color/secondaryColor"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/budget_amount_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:text="@{budget.tag}"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorText"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/budget_category_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/budget_category_image"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!--        <TextView-->
-<!--            android:id="@+id/budget_amount_text"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="5dp"-->
-<!--            android:layout_marginBottom="3dp"-->
-<!--            android:text="@{Integer.toString((budget.expense/budget.budget)*100)}"-->
-<!--            android:textColor="@android:color/black"-->
-<!--            android:textSize="15sp"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/progressBar"-->
-<!--            app:layout_constraintEnd_toStartOf="@id/text_GTQ" />-->
+        <!--            android:id="@+id/budget_amount_text"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="24dp"-->
+        <!--            android:text="@{budget.tag}"-->
+        <!--            android:textColor="@android:color/black"-->
+        <!--            android:textSize="15sp"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/budget_category_text"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/budget_amount_text"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginEnd="5dp"-->
+        <!--            android:layout_marginBottom="3dp"-->
+        <!--            android:text="@{Integer.toString((budget.expense/budget.budget)*100)}"-->
+        <!--            android:textColor="@android:color/black"-->
+        <!--            android:textSize="15sp"-->
+        <!--            app:layout_constraintBottom_toTopOf="@+id/progressBar"-->
+        <!--            app:layout_constraintEnd_toStartOf="@id/text_GTQ" />-->
 
 
-<!--        <ImageView-->
-<!--            android:id="@+id/budget_category_image"-->
-<!--            android:layout_width="50dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:typeImage="@{budget.iconIndex}" />-->
+        <ImageView
+            android:id="@+id/budget_category_image"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="20dp"
+            android:contentDescription="@string/icon_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:typeImage="@{budget.iconIndex}" />
 
-<!--        <ProgressBar-->
-<!--            android:id="@+id/progressBar"-->
-<!--            style="?android:attr/progressBarStyleHorizontal"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="16dp"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:max="@{budget.budget}"-->
-<!--            android:progress="@{budget.expense}"-->
-<!--            android:scaleY="1"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/budget_category_image"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+        <TextView
+            android:id="@+id/textDueDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@{budget.dueDate}"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/text_GTQ"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:layout_marginBottom="3dp"-->
-<!--            android:text="%"-->
-<!--            android:textColor="@android:color/black"-->
-<!--            android:textSize="15sp"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/progressBar"-->
-<!--            app:layout_constraintEnd_toEndOf="parent" />-->
+        <!--        <ProgressBar-->
+        <!--            android:id="@+id/progressBar"-->
+        <!--            style="?android:attr/progressBarStyleHorizontal"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="16dp"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:layout_marginEnd="20dp"-->
+        <!--            android:max="@{budget.budget}"-->
+        <!--            android:progress="@{budget.expense}"-->
+        <!--            android:scaleY="1"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/budget_category_image"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--        <View-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="1dp"-->
-<!--            android:background="#F3F3F8"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/text_GTQ"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginEnd="20dp"-->
+        <!--            android:layout_marginBottom="3dp"-->
+        <!--            android:text="%"-->
+        <!--            android:textColor="@android:color/black"-->
+        <!--            android:textSize="15sp"-->
+        <!--            app:layout_constraintBottom_toTopOf="@+id/progressBar"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent" />-->
+
+        <!--        <View-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="1dp"-->
+        <!--            android:background="#F3F3F8"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

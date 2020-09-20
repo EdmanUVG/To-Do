@@ -18,11 +18,12 @@ class BudgetEditViewModel(val database: TaskDatabaseDao, val budgetId: Long) : V
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     fun updateBudget(amount: String) {
+
         val prep = budget.value
         uiScope.launch {
             update(prep?.let {
-                Task(budgetId = it.budgetId, tag = it.tag, task = amount ?: it.task,
-                iconIndex = it.iconIndex, income = it.income, expense = it.expense)
+                Task(budgetId = it.budgetId, task = amount ?: it.task, priority = it.priority, tag = it.tag,
+                    dueDate = it.dueDate, iconIndex = it.iconIndex, creationDate = it.creationDate)
             })
         }
     }

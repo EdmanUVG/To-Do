@@ -7,12 +7,26 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearanceOverlay.Waller</item>
+
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">#FFFFFF</item>-->
 
         <item name="android:textViewStyle">@style/RobotoTextViewSyle</item>
         <item name="android:buttonStyle">@style/RobotoButtonSyle</item>
 
+    </style>
+
+    <style name="ShapeAppearanceOverlay.Waller"
+        parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="DialogStyle" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.ActionBar"/>
