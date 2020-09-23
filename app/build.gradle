@@ -92,6 +92,10 @@ dependencies {
     // Mask Edit Text
     implementation 'com.github.santalu:mask-edittext:1.1.1'
 
+    // Material dialogs
+    def material_dialogs_version = "3.1.0"
+    implementation "com.afollestad.material-dialogs:core:$material_dialogs_version"
+
     // MP Android Chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 

@@ -8,21 +8,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.walletsaver.database.Task
 import com.example.walletsaver.databinding.TaskItemLayoutBinding
 
-class BudgetAdapter (val listener: BudgetClickListener): ListAdapter<Task, BudgetAdapter.ViewHolder>(BudgetDiffCallback())  {
+class TaskAdapter (val listener: TaskClickListener): ListAdapter<Task, TaskAdapter.ViewHolder>(TaskDiffCallback())  {
 
-    override fun onBindViewHolder(holder: BudgetAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TaskAdapter.ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(listener, item)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BudgetAdapter.ViewHolder {
-        return BudgetAdapter.ViewHolder.from(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskAdapter.ViewHolder {
+        return TaskAdapter.ViewHolder.from(parent)
     }
 
     class ViewHolder private constructor(val binding: TaskItemLayoutBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(clickListener: BudgetClickListener, item:Task) {
+        fun bind(clickListener: TaskClickListener, item:Task) {
             binding.budget = item
             binding.clickListener = clickListener
             binding.executePendingBindings()
@@ -41,9 +41,9 @@ class BudgetAdapter (val listener: BudgetClickListener): ListAdapter<Task, Budge
 }
 
 
-class BudgetDiffCallback: DiffUtil.ItemCallback<Task>() {
+class TaskDiffCallback: DiffUtil.ItemCallback<Task>() {
     override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
-        return oldItem.budgetId == newItem.budgetId
+        return oldItem.taskId == newItem.taskId
     }
 
     override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {
@@ -51,6 +51,6 @@ class BudgetDiffCallback: DiffUtil.ItemCallback<Task>() {
     }
 }
 
-class BudgetClickListener(val clickListener: (budgetid: Long) -> Unit) {
-    fun onClick(task: Task) = clickListener(task.budgetId)
+class TaskClickListener(val clickListener: (budgetid: Long) -> Unit) {
+    fun onClick(task: Task) = clickListener(task.taskId)
 }

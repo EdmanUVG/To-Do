@@ -9,18 +9,18 @@ data class Task (
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    var budgetId: Long = 0L,
+    var taskId: Long = 0L,
 
-    val task: String,
+    var task: String,
 
     var priority: String,
 
     var tag: String,
 
-    val dueDate: String,
+    var dueDate: String,
 
-    val iconIndex: Int,
+    var iconIndex: Int,
 
-    val creationDate: String
+    var creationDate: String
 
 )

@@ -14,12 +14,12 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F3F3F8">
+        android:background="@color/primary_background_color">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/homeBackgroundColor"
+            android:background="@color/primary_background_color"
             tools:context=".ui.taskdetail.TaskDetailFragment">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginTop="16dp"
-                android:background="@android:color/white"
+                android:background="@color/secondary_background_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayoutNotes">
@@ -39,7 +39,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/created_text"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/primary_text_color"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +50,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="@{viewModel.budget.creationDate}"
+                    android:text="@{viewModel.task.creationDate}"
+                    android:textColor="@color/primary_text_color"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -61,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="110dp"
                 android:layout_marginTop="16dp"
-                android:background="@android:color/white"
+                android:background="@color/secondary_background_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayoutSubTask">
@@ -72,12 +73,15 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="48dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
                     android:autofillHints=""
                     android:background="@android:color/transparent"
                     android:ems="10"
                     android:gravity="top"
                     android:hint="@string/add_note_text"
                     android:inputType="text|textMultiLine"
+                    android:textColor="@color/primary_text_color"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -101,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="16dp"
-                android:background="@android:color/white"
+                android:background="@color/secondary_background_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayoutOptions">
@@ -116,6 +120,7 @@
                     android:ems="10"
                     android:hint="@string/add_subtask_text"
                     android:inputType="text"
+                    android:textColor="@color/primary_text_color"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -137,9 +142,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayoutOptions"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="16dp"
-                android:background="@android:color/white"
+                android:background="@color/secondary_background_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayoutChips">
@@ -150,6 +155,7 @@
                     android:layout_height="60dp"
                     android:clickable="true"
                     android:focusable="true"
+                    android:background="@color/secondary_background_color"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -158,6 +164,7 @@
                         android:id="@+id/dueDateViewOne"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:background="@color/secondary_background_color"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/dueDateGuideline"
                         app:layout_constraintStart_toStartOf="parent"
@@ -180,8 +187,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:text="@{viewModel.budget.dueDate}"
-                            android:textColor="@android:color/black"
+                            android:text="@{viewModel.task.dueDate}"
+                            android:textColor="@color/primary_text_color"
                             android:textSize="15sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/imageView12"
@@ -190,14 +197,25 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:background="@android:color/darker_gray"
-                        android:id="@+id/dueDateViewTwo"
+                        android:id="@+id/priorityView"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:background="@color/secondary_background_color"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/dueDateViewOne"
                         app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/imageView13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:contentDescription="@string/icon_description"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:typeImage="@{viewModel.task.iconIndex}" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -210,10 +228,11 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/priority_selection_view"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:background="@color/secondary_background_color"
                     android:clickable="true"
                     android:focusable="true"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -221,83 +240,16 @@
                     app:layout_constraintTop_toBottomOf="@+id/due_date_view">
 
                     <ImageView
-                        android:id="@+id/imageView13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:typeImage="@{viewModel.budget.iconIndex}"
-                        android:contentDescription="@string/icon_description" />
-
-                    <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/priority_text"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imageView13"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/task_priority_text"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:text="@{viewModel.budget.priority}"
-                        android:textAlignment="textEnd"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/priority_selection_view">
-
-                    <ImageView
                         android:id="@+id/imageView14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
+                        android:contentDescription="@string/icon_description"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_baseline_person"
-                        android:contentDescription="@string/icon_description" />
+                        app:srcCompat="@drawable/ic_baseline_person" />
 
-                    <TextView
-                        android:id="@+id/textView14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/add_assignee"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imageView14"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textView15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:text="None"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -305,7 +257,7 @@
                 android:id="@+id/constraintLayoutChips"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
+                android:background="@color/secondary_background_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
@@ -327,7 +279,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="56dp"
-                android:background="@android:color/white"
+                android:background="@color/secondary_background_color"
                 android:paddingTop="20dp"
                 android:paddingBottom="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -341,8 +293,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:text="@{viewModel.budget.task}"
-                    android:textColor="@android:color/black"
+                    android:text="@{viewModel.task.task}"
+                    android:textColor="@color/primary_text_color"
                     android:textSize="28sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"

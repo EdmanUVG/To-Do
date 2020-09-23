@@ -10,14 +10,14 @@
             type="com.example.walletsaver.database.Task" />
         <variable
             name="clickListener"
-            type="com.example.walletsaver.ui.home.BudgetClickListener" />
+            type="com.example.walletsaver.ui.home.TaskClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/budget_item"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="@drawable/budget_list_background"
+        android:background="@color/secondary_background_color"
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:onClick="@{() -> clickListener.onClick(budget)}">
 
@@ -29,7 +29,7 @@
             android:layout_marginEnd="60dp"
             android:fontFamily="@font/roboto"
             android:text="@{budget.task}"
-            android:textColor="@color/colorText"
+            android:textColor="@color/primary_text_color"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -99,24 +99,6 @@
         <!--            app:layout_constraintStart_toEndOf="@+id/budget_category_image"-->
         <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/text_GTQ"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginEnd="20dp"-->
-        <!--            android:layout_marginBottom="3dp"-->
-        <!--            android:text="%"-->
-        <!--            android:textColor="@android:color/black"-->
-        <!--            android:textSize="15sp"-->
-        <!--            app:layout_constraintBottom_toTopOf="@+id/progressBar"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent" />-->
-
-        <!--        <View-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="1dp"-->
-        <!--            android:background="#F3F3F8"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -16,7 +16,7 @@ interface TaskDatabaseDao {
     fun delete(task: Task)
 
     @Query("SELECT * FROM task_table WHERE id = :key")
-    fun getBudget(key: Long): LiveData<Task>
+    fun getTask(key: Long): LiveData<Task>
 
     @Query("SELECT COUNT(id) FROM task_table")
     fun getRowsCount(): LiveData<Int>

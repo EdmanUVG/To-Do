@@ -3,7 +3,7 @@ package com.example.walletsaver.database
 import android.content.Context
 import androidx.room.*
 
-@Database(entities = [Task::class], version = 1, exportSchema = false)
+@Database(entities = [Task::class], version = 2, exportSchema = false)
 abstract class WalletDatabase: RoomDatabase() {
 
     abstract val taskDatabaseDao: TaskDatabaseDao

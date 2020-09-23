@@ -4,11 +4,9 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -109,11 +107,11 @@ class TaskDetailFragment : Fragment() {
             }
         })
 
-        priority_selection_view.setOnClickListener {
+        priorityView.setOnClickListener {
             showBottomSheetDialog()
         }
 
-        due_date_view.setOnClickListener {
+        dueDateViewOne.setOnClickListener {
             val now = Calendar.getInstance()
             val datePicker = DatePickerDialog(context, DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDayOfMonth ->
                 val selectedDate = Calendar.getInstance()
@@ -144,15 +142,15 @@ class TaskDetailFragment : Fragment() {
 
         dialog?.setContentView(view)
 
-        view.viewNone.setOnClickListener {
+        view.viewUrgent.setOnClickListener {
             viewModel.updatePriority("Urgent")
             dialog?.dismiss()
         }
-        view.viewPriority.setOnClickListener {
+        view.viewHigh.setOnClickListener {
             viewModel.updatePriority("High")
             dialog?.dismiss()
         }
-        view.viewDate.setOnClickListener {
+        view.viewMedium.setOnClickListener {
             viewModel.updatePriority("Medium")
             dialog?.dismiss()
         }

@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        getWindow().setNavigationBarColor(getResources().getColor(R.color.navigationBarColor));
+        window.navigationBarColor = resources.getColor(R.color.navigationBarColor);
 
         setSupportActionBar(toolbar)
 

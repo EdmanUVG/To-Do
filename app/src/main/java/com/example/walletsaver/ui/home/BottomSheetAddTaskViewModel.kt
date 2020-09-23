@@ -6,7 +6,6 @@ import com.example.walletsaver.database.Task
 import com.example.walletsaver.database.TaskDatabaseDao
 import kotlinx.coroutines.*
 
-
 class BottomSheetAddTaskViewModel(val database: TaskDatabaseDao) : ViewModel() {
 
     private val viewModelJob = Job()

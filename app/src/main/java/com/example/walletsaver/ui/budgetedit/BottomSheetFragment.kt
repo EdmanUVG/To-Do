@@ -28,13 +28,13 @@ class BottomSheetFragment() : BottomSheetDialogFragment() {
     }
 
     private fun initView() {
-        viewNone.setOnClickListener {
+        viewUrgent.setOnClickListener {
             Toast.makeText(context, "Facebook", Toast.LENGTH_SHORT).show()
         }
-        viewPriority.setOnClickListener {
+        viewHigh.setOnClickListener {
             Toast.makeText(context, "Twitter", Toast.LENGTH_SHORT).show()
         }
-        viewDate.setOnClickListener {
+        viewMedium.setOnClickListener {
             Toast.makeText(context, "Instagram", Toast.LENGTH_SHORT).show()
         }
         viewLow.setOnClickListener {

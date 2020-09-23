@@ -7,9 +7,9 @@ import com.example.walletsaver.database.Task
 import com.example.walletsaver.database.TaskDatabaseDao
 import kotlinx.coroutines.*
 
-class TaskDetailViewModel(val database: TaskDatabaseDao, val budgetId: Long) : ViewModel() {
+class TaskDetailViewModel(val database: TaskDatabaseDao, val taskId: Long) : ViewModel() {
 
-    val budget = database.getBudget(budgetId)
+    val task = database.getTask(taskId)
 
     val viewModelJob = Job()
 
@@ -30,20 +30,20 @@ class TaskDetailViewModel(val database: TaskDatabaseDao, val budgetId: Long) : V
             iconIndex = 4
         }
 
-        val prep = budget.value
+        val prep = task.value
         uiScope.launch {
             update(prep?.let {
-                Task(budgetId = it.budgetId, task = it.task, priority = priority ?: it.priority,
+                Task(taskId = it.taskId, task = it.task, priority = priority ?: it.priority,
                     tag = it.tag, dueDate = it.dueDate, iconIndex = iconIndex ?: it.iconIndex,  creationDate = it.creationDate)
             })
         }
     }
 
     fun updateDueDate(dueDate: String) {
-        val prep = budget.value
+        val prep = task.value
         uiScope.launch {
             update(prep?.let {
-                Task(budgetId = it.budgetId, task = it.task, priority = it.priority,
+                Task(taskId = it.taskId, task = it.task, priority = it.priority,
                     tag = it.tag, dueDate = dueDate?: it.dueDate, iconIndex = it.iconIndex,  creationDate = it.creationDate)
             })
         }
@@ -57,9 +57,6 @@ class TaskDetailViewModel(val database: TaskDatabaseDao, val budgetId: Long) : V
         }
     }
 
-
-
-
     private val _budgetClicked = MutableLiveData<Long>()
     val budgetClicked: LiveData<Long>
         get() = _budgetClicked
@@ -72,7 +69,6 @@ class TaskDetailViewModel(val database: TaskDatabaseDao, val budgetId: Long) : V
         _budgetClicked.value = null
     }
 
-
     fun deleteBudget() {
         uiScope.launch {
             delete()
@@ -81,7 +77,7 @@ class TaskDetailViewModel(val database: TaskDatabaseDao, val budgetId: Long) : V
 
     private suspend fun delete() {
         withContext(Dispatchers.IO) {
-            budget.value?.let { database.delete(it) }
+            task.value?.let { database.delete(it) }
         }
     }
 

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.*
 import android.Manifest
 import android.app.Activity
-import android.app.DatePickerDialog
 import android.content.pm.PackageManager
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -17,12 +16,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.walletsaver.R
 import com.example.walletsaver.database.WalletDatabase
 import com.example.walletsaver.databinding.FragmentHomeBinding
-import com.example.walletsaver.ui.budgetedit.BottomSheetFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.android.synthetic.main.bottom_sheet_add_task.*
-import kotlinx.android.synthetic.main.bottom_sheet_add_task.view.*
 import kotlinx.android.synthetic.main.bottom_sheet_filter_layout.view.*
-import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -73,7 +68,7 @@ class HomeFragment : Fragment() {
             }
         })
         
-        val adapter = BudgetAdapter(BudgetClickListener {
+        val adapter = TaskAdapter(TaskClickListener {
             viewModel.onBudgetClicked(it)
         })
 
@@ -180,11 +175,11 @@ class HomeFragment : Fragment() {
 
         dialog?.setContentView(view)
 
-        view.viewPriority.setOnClickListener {
+        view.viewHigh.setOnClickListener {
             viewModel.onPriorityClicked()
             dialog?.dismiss()
         }
-        view.viewNone.setOnClickListener {
+        view.viewUrgent.setOnClickListener {
             viewModel.onNoPriorityClicked()
             dialog?.dismiss()
         }

@@ -1,24 +1,29 @@
 package com.example.walletsaver.ui.home
 
 import android.app.DatePickerDialog
-import android.app.Dialog
+import android.content.Context
+import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.walletsaver.R
 import com.example.walletsaver.database.WalletDatabase
-import com.example.walletsaver.databinding.BottomSheetAddTaskBinding
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
+import com.afollestad.materialdialogs.customview.getCustomView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.bottom_sheet_add_task.*
-import kotlinx.android.synthetic.main.bottom_sheet_add_task.view.*
-import kotlinx.android.synthetic.main.bottom_sheet_priority.*
+import kotlinx.android.synthetic.main.dialog_priority_layout.*
 import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -31,6 +36,8 @@ class BottomSheetAddTask() :  BottomSheetDialogFragment(){
 
     var formater = SimpleDateFormat("MMM dd", Locale.US)
     private var dueDate = ""
+    private var priority = ""
+    private var iconIndex = 5
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +46,7 @@ class BottomSheetAddTask() :  BottomSheetDialogFragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentView = inflater.inflate(R.layout.bottom_sheet_add_task, container, false)
+
         return fragmentView
     }
 
@@ -51,7 +59,6 @@ class BottomSheetAddTask() :  BottomSheetDialogFragment(){
 
         viewModelFactory = BottomSheetAddTaskViewModelFactory(dataSourceBudget)
         viewModel = ViewModelProvider(this, viewModelFactory).get(BottomSheetAddTaskViewModel::class.java)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,7 +67,6 @@ class BottomSheetAddTask() :  BottomSheetDialogFragment(){
     }
 
     private fun initView() {
-
         layout_calendar.setOnClickListener {
             val now = Calendar.getInstance()
             val datePicker = DatePickerDialog(context, DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDayOfMonth ->
@@ -69,13 +75,14 @@ class BottomSheetAddTask() :  BottomSheetDialogFragment(){
                 selectedDate.set(Calendar.DAY_OF_MONTH, mDayOfMonth)
                 val date = formater.format(selectedDate.time)
                 dueDate = date.toString()
+                this.image_calendar.setImageResource(R.drawable.ic_baseline_calendar_selected)
 //                view.dueDateText.setText(date.toString())
             }, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH))
             datePicker.show()
         }
 
         layout_priority.setOnClickListener {
-            Toast.makeText(context, "Priority", Toast.LENGTH_SHORT).show()
+            showPriorityDialog()
         }
 
         layout_tag.setOnClickListener {
@@ -89,12 +96,56 @@ class BottomSheetAddTask() :  BottomSheetDialogFragment(){
                 editText_task.error = getString(R.string.budget_required_text)
                 editText_task.requestFocus()
             } else {
-                viewModel.insertTask(task, "Medium", "Mate",  dueDate, 2, "Today")
-                activity?.onBackPressed()
+                // Get current date for date creation variable
+                val now = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    LocalDateTime.now()
+                } else { TODO("VERSION.SDK_INT < O") }
 
+                val creationDate = now.format(DateTimeFormatter.ofPattern("MMM dd"))
+
+                viewModel.insertTask(task, priority, "Mate",  dueDate, iconIndex, creationDate.toString())
+                activity?.onBackPressed()
                 activity?.let { UIUtil.hideKeyboard(it) }
             }
         }
 
+    }
+
+    private fun showPriorityDialog() {
+        val dialog = context?.let {
+            MaterialDialog(it)
+                .noAutoDismiss()
+                .customView(R.layout.dialog_priority_layout)
+        }
+
+        dialog?.findViewById<LinearLayout>(R.id.viewUrgent)?.setOnClickListener {
+            priority = "Urgent"
+            iconIndex = 1
+            this.image_priority.setImageResource(R.drawable.ic_baseline_label_important_urgent)
+            dialog.dismiss()
+        }
+
+        dialog?.findViewById<LinearLayout>(R.id.viewHigh)?.setOnClickListener {
+            priority = "High"
+            iconIndex = 2
+            this.image_priority.setImageResource(R.drawable.ic_baseline_label_important_high)
+            dialog.dismiss()
+        }
+
+        dialog?.findViewById<LinearLayout>(R.id.viewMedium)?.setOnClickListener {
+            priority = "Medium"
+            iconIndex = 3
+            this.image_priority.setImageResource(R.drawable.ic_baseline_label_important_medium)
+            dialog.dismiss()
+        }
+
+        dialog?.findViewById<LinearLayout>(R.id.viewLow)?.setOnClickListener {
+            priority = "Low"
+            iconIndex = 4
+            this.image_priority.setImageResource(R.drawable.ic_baseline_label_important_low)
+            dialog.dismiss()
+        }
+
+        dialog?.show()
     }
 }

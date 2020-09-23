@@ -9,7 +9,7 @@ import kotlinx.coroutines.*
 
 class BudgetEditViewModel(val database: TaskDatabaseDao, val budgetId: Long) : ViewModel() {
 
-    val budget = database.getBudget(budgetId)
+    val budget = database.getTask(budgetId)
 
     val amount = MutableLiveData<String>()
 
@@ -22,7 +22,7 @@ class BudgetEditViewModel(val database: TaskDatabaseDao, val budgetId: Long) : V
         val prep = budget.value
         uiScope.launch {
             update(prep?.let {
-                Task(budgetId = it.budgetId, task = amount ?: it.task, priority = it.priority, tag = it.tag,
+                Task(taskId = it.taskId, task = amount ?: it.task, priority = it.priority, tag = it.tag,
                     dueDate = it.dueDate, iconIndex = it.iconIndex, creationDate = it.creationDate)
             })
         }
