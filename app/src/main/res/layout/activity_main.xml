@@ -28,13 +28,8 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/secondary_background_color"
+                android:background="@color/primary_background_color"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/bottom_view_color" />
 
         </com.google.android.material.appbar.AppBarLayout>
 

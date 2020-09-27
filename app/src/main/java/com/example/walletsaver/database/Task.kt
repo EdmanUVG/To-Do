@@ -1,5 +1,6 @@
 package com.example.walletsaver.database
 
+import androidx.annotation.Nullable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -21,6 +22,14 @@ data class Task (
 
     var iconIndex: Int,
 
-    var creationDate: String
+    var creationDate: String,
+
+    @Nullable
+    var subtask: String,
+
+    @Nullable
+    var description: String,
+
+    var status: Int
 
 )

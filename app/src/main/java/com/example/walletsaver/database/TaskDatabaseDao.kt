@@ -24,8 +24,14 @@ interface TaskDatabaseDao {
     @Query("SELECT SUM(task) FROM task_table")
     fun getSumOfBudgets(): LiveData<Int>
 
-    @Query("SELECT * FROM task_table ORDER BY id DESC")
+    @Query("SELECT * FROM task_table WHERE status = 0 ORDER BY id DESC")
     fun getTasks(): LiveData<List<Task>>
+
+    @Query("SELECT * FROM task_table WHERE status = 1 ORDER BY id DESC")
+    fun getTasksCompleted(): LiveData<List<Task>>
+
+    @Query("SELECT COUNT(status) FROM task_table WHERE status = 1")
+    fun getCountCompletedTasks(): LiveData<Int>
 
     @Query("SELECT * FROM task_table ORDER BY iconIndex ASC")
     fun getTasksByPriority(): LiveData<List<Task>>

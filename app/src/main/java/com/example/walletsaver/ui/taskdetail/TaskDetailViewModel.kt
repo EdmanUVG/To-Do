@@ -34,7 +34,8 @@ class TaskDetailViewModel(val database: TaskDatabaseDao, val taskId: Long) : Vie
         uiScope.launch {
             update(prep?.let {
                 Task(taskId = it.taskId, task = it.task, priority = priority ?: it.priority,
-                    tag = it.tag, dueDate = it.dueDate, iconIndex = iconIndex ?: it.iconIndex,  creationDate = it.creationDate)
+                    tag = it.tag, dueDate = it.dueDate, iconIndex = iconIndex ?: it.iconIndex,  creationDate = it.creationDate,
+                    subtask = it.subtask, description = it.description, status = it.status)
             })
         }
     }
@@ -44,7 +45,52 @@ class TaskDetailViewModel(val database: TaskDatabaseDao, val taskId: Long) : Vie
         uiScope.launch {
             update(prep?.let {
                 Task(taskId = it.taskId, task = it.task, priority = it.priority,
-                    tag = it.tag, dueDate = dueDate?: it.dueDate, iconIndex = it.iconIndex,  creationDate = it.creationDate)
+                    tag = it.tag, dueDate = dueDate?: it.dueDate, iconIndex = it.iconIndex,  creationDate = it.creationDate,
+                    subtask = it.subtask, description = it.description, status = it.status)
+            })
+        }
+    }
+
+    fun updateStatusToCompleted(newStatus: Int) {
+        val prep = task.value
+        uiScope.launch {
+            update(prep?.let {
+                Task(taskId = it.taskId, task = it.task, priority = it.priority,
+                    tag = it.tag, dueDate = it.dueDate, iconIndex = 5,  creationDate = it.creationDate,
+                    subtask = it.subtask, description = it.description, status = newStatus?: it.status)
+            })
+        }
+    }
+
+    fun updateNotes(descriptions: String) {
+        val prep = task.value
+        uiScope.launch {
+            update(prep?.let {
+                Task(taskId = it.taskId, task = it.task, priority = it.priority,
+                    tag = it.tag, dueDate = it.dueDate, iconIndex = it.iconIndex,  creationDate = it.creationDate,
+                    subtask = it.subtask, description = descriptions?: it.description, status = it.status)
+            })
+        }
+    }
+
+    fun updateSubTask(subTask: String) {
+        val prep = task.value
+        uiScope.launch {
+            update(prep?.let {
+                Task(taskId = it.taskId, task = it.task, priority = it.priority,
+                    tag = it.tag, dueDate = it.dueDate, iconIndex = it.iconIndex,  creationDate = it.creationDate,
+                    subtask = subTask?: it.subtask, description = it.description, status = it.status)
+            })
+        }
+    }
+
+    fun updateTask(currentTask: String) {
+        val prep = task.value
+        uiScope.launch {
+            update(prep?.let {
+                Task(taskId = it.taskId, task = currentTask?: it.task, priority = it.priority,
+                    tag = it.tag, dueDate = it.dueDate, iconIndex = it.iconIndex,  creationDate = it.creationDate,
+                    subtask = it.subtask, description = it.description, status = it.status)
             })
         }
     }

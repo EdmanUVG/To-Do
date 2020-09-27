@@ -8,6 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/primary_background_color"
         tools:context=".ui.help.AppInfoFragment">
 
 
@@ -29,6 +30,7 @@
             android:layout_marginBottom="24dp"
             android:text="Version 1.0.0"
             android:textSize="16sp"
+            android:textColor="@color/secondary_text_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -38,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Wallet Saver"
-            android:textColor="@android:color/black"
+            android:textColor="@color/primary_text_color"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/imageView9"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,6 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Created by: Matzet Studio"
+            android:textColor="@color/secondary_text_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView9" />

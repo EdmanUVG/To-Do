@@ -3,16 +3,18 @@ package com.example.walletsaver.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.walletsaver.database.Task
 import com.example.walletsaver.database.TaskDatabaseDao
 import kotlinx.coroutines.*
 
 class HomeViewModel(val database: TaskDatabaseDao) : ViewModel() {
 
     val tasks = database.getTasks()
+    val completedTasks = database.getTasksCompleted()
+
     val tasksByPriority = database.getTasksByPriority()
 
     val rowsCount = database.getRowsCount()
+    val completedTasksCount = database.getCountCompletedTasks()
 
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)

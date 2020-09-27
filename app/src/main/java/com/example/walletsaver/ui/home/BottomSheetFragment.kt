@@ -1,4 +1,4 @@
-package com.example.walletsaver.ui.budgetedit
+package com.example.walletsaver.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

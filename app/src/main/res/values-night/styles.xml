@@ -9,8 +9,8 @@
 
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearanceOverlay.Waller</item>
 
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">@color/secondary_background_color</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@color/primary_background_color</item>
 
         <item name="android:textViewStyle">@style/RobotoTextViewSyle</item>
         <item name="android:buttonStyle">@style/RobotoButtonSyle</item>

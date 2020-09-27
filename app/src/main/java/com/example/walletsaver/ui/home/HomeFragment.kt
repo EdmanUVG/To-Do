@@ -18,6 +18,7 @@ import com.example.walletsaver.database.WalletDatabase
 import com.example.walletsaver.databinding.FragmentHomeBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.bottom_sheet_filter_layout.view.*
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -42,6 +43,7 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
         setHasOptionsMenu(true)
+        activity?.let { UIUtil.hideKeyboard(it) }
 
         return binding.root
     }
@@ -72,7 +74,8 @@ class HomeFragment : Fragment() {
             viewModel.onBudgetClicked(it)
         })
 
-        binding.budgetList.adapter = adapter
+        binding.taskList.adapter = adapter
+        binding.taskCompletedList.adapter = adapter
 
         // Will display the list in the order selected
         viewModel.isSorted.observe(viewLifecycleOwner, Observer { isSorted ->
@@ -91,15 +94,30 @@ class HomeFragment : Fragment() {
             }
         })
 
+        // Check if completed task exist to display proper UI
+//        viewModel.completedTasksCount.observe(viewLifecycleOwner, Observer { count ->
+//            if (count == 0) {
+//                binding.textCompleted.visibility = View.INVISIBLE
+//                binding.taskCompletedList.visibility = View.INVISIBLE
+//            } else {
+//                binding.taskList.visibility = View.VISIBLE
+//                binding.textCompleted.visibility = View.VISIBLE
+//                binding.taskCompletedList.visibility = View.VISIBLE
+//                viewModel.completedTasks.observe(viewLifecycleOwner, Observer {
+//                    it?.let {
+//                        adapter.submitList(it)
+//                    }
+//                })
+//            }
+//        })
 
+        // Check if database is empty to display empty image background
         viewModel.rowsCount.observe(viewLifecycleOwner, Observer { count ->
             if (count == 0) {
                 if (esVisible) {
-                    binding.linearLayout.visibility = View.INVISIBLE
                     binding.emptyScreen.visibility = View.VISIBLE
                     esVisible = false
                 } else {
-                    binding.linearLayout.visibility = View.VISIBLE
                     binding.emptyScreen.visibility = View.INVISIBLE
                     esVisible = true
                 }
@@ -157,10 +175,6 @@ class HomeFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_settings) {
             findNavController().navigate(R.id.action_navigation_home_to_settings_fragment)
-        }
-        if (item.itemId == R.id.action_share) {
-            val mBottomSheetFragment = BottomSheetAddTask()
-            mBottomSheetFragment.show(requireActivity().supportFragmentManager, "MY_BOTTOM_SHEET")
         }
 
         if (item.itemId == R.id.action_filter) {

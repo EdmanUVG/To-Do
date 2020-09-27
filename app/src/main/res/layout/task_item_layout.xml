@@ -17,7 +17,7 @@
         android:id="@+id/budget_item"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="@color/secondary_background_color"
+        android:background="@color/primary_background_color"
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:onClick="@{() -> clickListener.onClick(budget)}">
 
@@ -25,9 +25,9 @@
             android:id="@+id/budget_category_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="58dp"
             android:layout_marginEnd="60dp"
-            android:fontFamily="@font/roboto"
+            android:fontFamily="sans-serif"
             android:text="@{budget.task}"
             android:textColor="@color/primary_text_color"
             android:textSize="15sp"
@@ -36,36 +36,12 @@
             app:layout_constraintStart_toEndOf="@+id/budget_category_image"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/budget_amount_text"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginStart="24dp"-->
-        <!--            android:text="@{budget.tag}"-->
-        <!--            android:textColor="@android:color/black"-->
-        <!--            android:textSize="15sp"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintStart_toEndOf="@+id/budget_category_text"-->
-        <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/budget_amount_text"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginEnd="5dp"-->
-        <!--            android:layout_marginBottom="3dp"-->
-        <!--            android:text="@{Integer.toString((budget.expense/budget.budget)*100)}"-->
-        <!--            android:textColor="@android:color/black"-->
-        <!--            android:textSize="15sp"-->
-        <!--            app:layout_constraintBottom_toTopOf="@+id/progressBar"-->
-        <!--            app:layout_constraintEnd_toStartOf="@id/text_GTQ" />-->
-
 
         <ImageView
             android:id="@+id/budget_category_image"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="20dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="18dp"
             android:contentDescription="@string/icon_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

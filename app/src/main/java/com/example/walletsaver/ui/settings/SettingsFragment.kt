@@ -85,9 +85,6 @@ class SettingsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(SettingsViewModel::class.java)
 
-        binding.layoutHelp.setOnClickListener {
-            findNavController().navigate(R.id.action_settings_fragment_to_help_fragment)
-        }
 
         val appSettingPrefs: SharedPreferences = requireActivity().getSharedPreferences("AppSettingPrefs", 0)
         val sharedPrefsEdit: SharedPreferences.Editor = appSettingPrefs.edit()
@@ -110,5 +107,20 @@ class SettingsFragment : Fragment() {
                 sharedPrefsEdit.apply()
             }
         })
+
+        // Navigate to the Help Fragment
+        binding.layoutHelp.setOnClickListener {
+            findNavController().navigate(R.id.action_settings_fragment_to_help_fragment)
+        }
+
+        // Navigate to the Premium Fragment
+        binding.layoutPremium.setOnClickListener {
+            findNavController().navigate(R.id.action_settings_fragment_to_premium_fragment)
+        }
+
+        // Navigate to the Overview Fragment
+        binding.layoutOverview.setOnClickListener {
+            findNavController().navigate(R.id.action_settings_fragment_to_overview_fragment)
+        }
     }
 }

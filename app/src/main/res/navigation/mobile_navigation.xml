@@ -30,18 +30,6 @@
         <argument
             android:name="budgetId"
             app:argType="long" />
-        <action
-            android:id="@+id/action_budget_detail_fragment_to_budget_edit_fragment"
-            app:destination="@id/budget_edit_fragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/budget_edit_fragment"
-        android:name="com.example.walletsaver.ui.budgetedit.BudgetEditFragment"
-        android:label="BudgetEditFragment"
-        tools:layout="@layout/fragment_budget_edit">
-        <argument
-            android:name="budgetId"
-            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/settings_fragment"
@@ -51,6 +39,12 @@
         <action
             android:id="@+id/action_settings_fragment_to_help_fragment"
             app:destination="@id/help_fragment" />
+        <action
+            android:id="@+id/action_settings_fragment_to_premium_fragment"
+            app:destination="@id/premium_fragment" />
+        <action
+            android:id="@+id/action_settings_fragment_to_overview_fragment"
+            app:destination="@id/overview_fragment" />
     </fragment>
     <fragment
         android:id="@+id/help_fragment"
@@ -64,6 +58,16 @@
     <fragment
         android:id="@+id/app_info_fragment"
         android:name="com.example.walletsaver.ui.help.AppInfoFragment"
-        android:label="AppInfoFragment"
+        android:label="App info"
         tools:layout="@layout/fragment_app_info"/>
+    <fragment
+        android:id="@+id/overview_fragment"
+        android:name="com.example.walletsaver.ui.overview.OverviewFragment"
+        android:label="Overview"
+        tools:layout="@layout/fragment_overview" />
+    <fragment
+        android:id="@+id/premium_fragment"
+        android:name="com.example.walletsaver.ui.premium.PremiumFragment"
+        android:label="Premium"
+        tools:layout="@layout/fragment_premium" />
 </navigation>
