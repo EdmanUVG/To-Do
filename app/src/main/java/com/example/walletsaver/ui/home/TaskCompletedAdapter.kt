@@ -6,24 +6,24 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.walletsaver.database.Task
-import com.example.walletsaver.databinding.TaskItemLayoutBinding
+import com.example.walletsaver.databinding.TaskCompletedLayoutBinding
 
-class TaskAdapter (val listeners: TaskClickListener): ListAdapter<Task, TaskAdapter.ViewHolder>(TaskDiffCallback())  {
+class TaskCompletedAdapter (val listeners: TaskClickListeners): ListAdapter<Task, TaskCompletedAdapter.ViewHolder>(TaskDiffCallbacks())  {
 
-    override fun onBindViewHolder(holder: TaskAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TaskCompletedAdapter.ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(listeners, item)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskAdapter.ViewHolder {
-        return TaskAdapter.ViewHolder.from(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskCompletedAdapter.ViewHolder {
+        return TaskCompletedAdapter.ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: TaskItemLayoutBinding)
+    class ViewHolder private constructor(val binding: TaskCompletedLayoutBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(clickListeners: TaskClickListener, item:Task) {
-            binding.budget = item
+        fun bind(clickListeners: TaskClickListeners, item:Task) {
+            binding.task = item
             binding.clickListener = clickListeners
             binding.executePendingBindings()
         }
@@ -31,7 +31,7 @@ class TaskAdapter (val listeners: TaskClickListener): ListAdapter<Task, TaskAdap
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = TaskItemLayoutBinding.inflate(layoutInflater, parent, false)
+                val binding = TaskCompletedLayoutBinding.inflate(layoutInflater, parent, false)
 
                 return ViewHolder(binding)
             }
@@ -39,11 +39,9 @@ class TaskAdapter (val listeners: TaskClickListener): ListAdapter<Task, TaskAdap
     }
 
 }
-//77804095
-//  9882058
 
-
-class TaskDiffCallback: DiffUtil.ItemCallback<Task>() {
+// Change name if not works
+class TaskDiffCallbacks: DiffUtil.ItemCallback<Task>() {
     override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
         return oldItem.taskId == newItem.taskId
     }
@@ -53,6 +51,6 @@ class TaskDiffCallback: DiffUtil.ItemCallback<Task>() {
     }
 }
 
-class TaskClickListener(val clickListener: (budgetid: Long) -> Unit) {
+class TaskClickListeners(val clickListener: (task_id: Long) -> Unit) {
     fun onClick(task: Task) = clickListener(task.taskId)
 }

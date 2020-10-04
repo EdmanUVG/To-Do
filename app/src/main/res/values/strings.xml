@@ -1,73 +1,59 @@
 <resources>
     <string name="app_name">Wallet Saver</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="agregar_presupuesto_text">Agregar presupuesto</string>
-    <string name="agregar_ingreso_text">Agregar ingreso</string>
-    <string name="agregar_gasto_text">Agregar gasto</string>
-    <string name="budget_category_text">Tag:</string>
+
+    <string name="add_new_task">Add a new task</string>
     <string name="add_tag_text">Add Tag</string>
-    <string name="priority_tag_text">Priority</string>
     <string name="add_subtask_text">Add a subtask</string>
+    <string name="add_assignee">Add assignee</string>
     <string name="add_note_text">Add a note</string>
 
-    <string name="text_expenses">Gastos</string>
+    <string name="text_save">SAVE</string>
+    <string name="task_required_text">Task required</string>
+    <string name="icon_description_text">Icon description</string>
 
-    <string name="budget_required_text">Presupuesto requerido</string>
-    <string name="income_required_text">Ingreso requerido</string>
-    <string name="expense_required_text">Gasto requerido</string>
+    <string name="theme_text">Theme</string>
+    <string name="light_theme_text">Light</string>
+    <string name="dark_theme_text">Dark</string>
+    <string name="by_system_theme_text">Set by system</string>
+    <string name="select_theme_text">Choose theme</string>
 
-    <string name="budget_saved_text">¡Presupuesto guardado!</string>
-    <string name="income_saved_text">¡Ingreso guardado!</string>
-    <string name="expense_saved_text">¡Gasto guardado!</string>
 
-    <!--    <integer name="progress_max"></integer>-->
+    <string name="settings_text">Settings</string>
+    <string name="fingerprint_text">Activate fingerprint</string>
 
-    <string name="text_amount">%1$d</string>
-    <string name="text_id">%1$d</string>
-    <string name="text_date">%1$d</string>
-    <string name="text_max_progress">%1$d</string>
+    <string name="privacy_text">Política de privacidad</string>
+    <string name="privacy_description_text">Imagen que representar los terminos y privacidad</string>
 
-    <string name="text_settings">Ajustes</string>
+    <string name="support_text">Support</string>
+    <string name="support_description_text">Imagen que representar soporte y ayuda</string>
 
+    <string name="edman">Edman Cota</string>
+    <string name="user_login_button_text">Login</string>
+
+    <string name="filter_custom">Custom</string>
+    <string name="filter_priority">Priority</string>
+    <string name="filter_date">Date</string>
+    <string name="filter_project">Project</string>
+    <string name="filter_tag">Tag</string>
+    <string name="sort_task_text">Sort by</string>
 
     <string name="urgent_text">Urgent</string>
     <string name="high_text">High</string>
     <string name="medium_text">Medium</string>
     <string name="low_text">Low</string>
-
-    <string name="due_date_text">Due Date</string>
     <string name="priority_text">Priority</string>
-    <string name="add_assignee">Add assignee</string>
-    <string name="created_text">Created</string>
 
-    <string name="add_new_task">Add a new task</string>
+    <string name="today_text">Today</string>
+    <string name="tomorrow_text">Tomorrow</string>
+    <string name="next_week_text">Next Week</string>
+    <string name="custom_text">Custom</string>
 
-    <string name="text_save">SAVE</string>
-
-    <string name="icon_description">Icon description</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <!--    Settings fragment-->
-    <string name="user_image_description_text">Imagen para representar foto de usuario</string>
-    <string name="user_login_button_text">Ingresar</string>
-
-    <string name="dark_theme_text">Tema oscuro</string>
-    <string name="dark_theme_description_text">Paleta de colores para representar temas de pantalla</string>
-
-    <string name="fingerprint_text">Activar huella</string>
-    <string name="fingerprint_description_text">Imagen que representar una huella</string>
-
-    <string name="privacy_text">Política de privacidad</string>
-    <string name="privacy_description_text">Imagen que representar los terminos y privacidad</string>
-
-    <string name="support_text">Soporte</string>
-    <string name="support_description_text">Imagen que representar soporte y ayuda</string>
-
-    <string name="key_sort">sort</string>
-
+    <string name="delete_task_text">Delete task</string>
+    <string name="complete_task_text">Complete</string>
+    <string name="move_tasK_text">Move task</string>
+    <string name="duplicate_task_text">Duplicate task</string>
+    <string name="task_activity_text">Task activity</string>
+    <string name="share_task_text">Share</string>
+    <string name="add_member_text">Add member</string>
 
 </resources>

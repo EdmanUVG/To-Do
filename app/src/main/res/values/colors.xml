@@ -19,6 +19,8 @@
     <color name="secondary_icon_color">#7C7B7B</color>
     <color name="hint_text_color">#F6F6F6</color>
 
+    <color name="gray_completed_color">#CB808080</color>
+
     <color name="primary_text_color">#de000000</color>
     <color name="secondary_text_color">#7C7B7B</color>
     <color name="secondary_background_color">#F3F3F8</color>

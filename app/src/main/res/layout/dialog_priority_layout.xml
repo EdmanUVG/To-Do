@@ -17,7 +17,7 @@
             android:textColor="@color/primary_text_color"
             android:gravity="center"
             android:textStyle="bold"
-            android:text="Priority"/>
+            android:text="@string/priority_text"/>
     </LinearLayout>
 
     <LinearLayout
@@ -73,7 +73,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/viewMedium"
+        android:id="@+id/viewDate"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_gravity="center_vertical"

@@ -2,15 +2,14 @@ package com.example.walletsaver.ui.taskdetail
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.walletsaver.R
 import com.example.walletsaver.database.WalletDatabase
@@ -19,6 +18,7 @@ import com.example.walletsaver.ui.history.TaskHistoryFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.bottom_sheet_priority.view.*
+import kotlinx.android.synthetic.main.bottom_sheet_task_view.view.*
 import kotlinx.android.synthetic.main.fragment_task_detail.*
 import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 import java.text.SimpleDateFormat
@@ -34,10 +34,13 @@ class TaskDetailFragment : Fragment() {
 
     var formater = SimpleDateFormat("MMM dd", Locale.US)
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_clear)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_clear)
 
     }
 
@@ -73,7 +76,7 @@ class TaskDetailFragment : Fragment() {
 
         val chip = Chip(chipGroup.context)
 
-        chip.text = getString(R.string.priority_tag_text)
+        chip.text = getString(R.string.priority_text)
 
         chip.chipBackgroundColor = context?.let {
             AppCompatResources.getColorStateList(
@@ -126,11 +129,6 @@ class TaskDetailFragment : Fragment() {
             binding.editTextSubtask.setText("")
         }
 
-        constraintLayoutHistory.setOnClickListener {
-            val mBottomSheetFragment = TaskHistoryFragment()
-            mBottomSheetFragment.show(requireActivity().supportFragmentManager, "MY_BOTTOM_SHEET")
-        }
-
 //        binding.imageEdit.setOnClickListener {
 //            viewModel.onBudgetClicked(binding.textId.text.toString().toLong())
 //        }
@@ -156,7 +154,7 @@ class TaskDetailFragment : Fragment() {
             viewModel.updatePriority("High")
             dialog?.dismiss()
         }
-        view.viewMedium.setOnClickListener {
+        view.viewDate.setOnClickListener {
             viewModel.updatePriority("Medium")
             dialog?.dismiss()
         }
@@ -167,21 +165,43 @@ class TaskDetailFragment : Fragment() {
         dialog?.show()
     }
 
+    private fun showTaskViewBottomSheetDialog() {
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_task_view, null)
+        val dialog = context?.let { BottomSheetDialog(it) }
+
+        dialog?.setContentView(view)
+
+        view.layoutTaskActivity.setOnClickListener {
+            val mBottomSheetFragment = TaskHistoryFragment()
+            mBottomSheetFragment.show(requireActivity().supportFragmentManager, "MY_BOTTOM_SHEET")
+            dialog?.dismiss()
+        }
+
+        view.layoutCompleteTask.setOnClickListener {
+            viewModel.updateStatusToCompleted(1)
+            activity?.onBackPressed()
+            dialog?.dismiss()
+        }
+
+        view.layoutDelete.setOnClickListener {
+            viewModel.deleteBudget()
+            activity?.onBackPressed()
+            dialog?.dismiss()
+        }
+
+        dialog?.show()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.delete_menu, menu)
+        inflater.inflate(R.menu.task_view_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_delete) {
-            viewModel.deleteBudget()
-            activity?.onBackPressed()
+        if (item.itemId == R.id.action_more) {
+            showTaskViewBottomSheetDialog()
         }
 
-        if (item.itemId == R.id.action_complete) {
-            viewModel.updateStatusToCompleted(1)
-            activity?.onBackPressed()
-        }
         return super.onOptionsItemSelected(item)
     }
 }

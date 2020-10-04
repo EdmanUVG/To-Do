@@ -7,7 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearanceOverlay.Waller</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
 
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@color/primary_background_color</item>
@@ -17,16 +17,15 @@
 
     </style>
 
-    <style name="ShapeAppearanceOverlay.Waller"
-        parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">16dp</item>
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
     </style>
 
-    <style name="DialogStyle" parent="Theme.MaterialComponents.DayNight.BottomSheetDialog">
-        <item name="android:windowIsFloating">false</item>
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:background">@drawable/rounded_dialog</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.ActionBar"/>

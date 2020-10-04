@@ -28,11 +28,14 @@ interface TaskDatabaseDao {
     fun getTasks(): LiveData<List<Task>>
 
     @Query("SELECT * FROM task_table WHERE status = 1 ORDER BY id DESC")
-    fun getTasksCompleted(): LiveData<List<Task>>
+    fun getTaskCompleted(): LiveData<List<Task>>
 
     @Query("SELECT COUNT(status) FROM task_table WHERE status = 1")
     fun getCountCompletedTasks(): LiveData<Int>
 
-    @Query("SELECT * FROM task_table ORDER BY iconIndex ASC")
-    fun getTasksByPriority(): LiveData<List<Task>>
+    @Query("SELECT * FROM task_table WHERE status = 0 ORDER BY iconIndex ASC")
+    fun getTaskByPriority(): LiveData<List<Task>>
+
+    @Query("SELECT * FROM task_table WHERE status = 0 ORDER BY creationDate ASC")
+    fun getTaskByDate(): LiveData<List<Task>>
 }

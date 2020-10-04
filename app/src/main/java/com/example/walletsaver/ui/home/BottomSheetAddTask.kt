@@ -1,8 +1,6 @@
 package com.example.walletsaver.ui.home
 
 import android.app.DatePickerDialog
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,13 +13,10 @@ import com.example.walletsaver.R
 import com.example.walletsaver.database.WalletDatabase
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
-import com.afollestad.materialdialogs.customview.getCustomView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.bottom_sheet_add_task.*
-import kotlinx.android.synthetic.main.dialog_priority_layout.*
 import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -76,7 +71,6 @@ class BottomSheetAddTask() :  BottomSheetDialogFragment(){
                 val date = formater.format(selectedDate.time)
                 dueDate = date.toString()
                 this.image_calendar.setImageResource(R.drawable.ic_baseline_calendar_selected)
-//                view.dueDateText.setText(date.toString())
             }, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH))
             datePicker.show()
         }
@@ -93,7 +87,7 @@ class BottomSheetAddTask() :  BottomSheetDialogFragment(){
             val task = editText_task.text.toString().trim()
 
             if (task.isEmpty()) {
-                editText_task.error = getString(R.string.budget_required_text)
+                editText_task.error = getString(R.string.task_required_text)
                 editText_task.requestFocus()
             } else {
                 // Get current date for date creation variable
@@ -132,7 +126,7 @@ class BottomSheetAddTask() :  BottomSheetDialogFragment(){
             dialog.dismiss()
         }
 
-        dialog?.findViewById<LinearLayout>(R.id.viewMedium)?.setOnClickListener {
+        dialog?.findViewById<LinearLayout>(R.id.viewDate)?.setOnClickListener {
             priority = "Medium"
             iconIndex = 3
             this.image_priority.setImageResource(R.drawable.ic_baseline_label_important_medium)

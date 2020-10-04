@@ -1,12 +1,14 @@
 package com.example.walletsaver.ui.overview
 
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -83,7 +85,7 @@ class OverviewFragment : Fragment() {
         xAxis.position = XAxis.XAxisPosition.BOTTOM
 
         lineChart.xAxis.setDrawGridLines(false) // enable for grid line
-        lineChart.axisLeft.enableGridDashedLine(10f, 10f, 0f)
+        lineChart.axisLeft.enableGridDashedLine(5f, 5f, 0f)
 
         // xAxis = vertical  --  axisLeft = horizontal
         lineChart.axisLeft.axisMinimum = 0F
@@ -98,13 +100,15 @@ class OverviewFragment : Fragment() {
         yValues.add(Entry(3f, 30f))
 
         val set1 = LineDataSet(yValues, "Gastos")
-        set1.fillColor = Color.rgb(255, 69, 0)
+        //set1.fillColor = Color.rgb(255, 69, 0)
         set1.fillAlpha = 55
         set1.color = Color.rgb(255, 69, 0)
         set1.lineWidth = 2f
         set1.valueTextSize = 0f
         set1.setCircleColor(Color.rgb(255, 69, 0))
         set1.setDrawFilled(true)
+        val fillGradient = ContextCompat.getDrawable(requireContext(), R.drawable.fade_red);
+        set1.fillDrawable = fillGradient
 
         val dataSets = ArrayList<ILineDataSet>()
         dataSets.add(set1)
@@ -135,7 +139,7 @@ class OverviewFragment : Fragment() {
         barChart.setDrawGridBackground(true)
 
         barChart.xAxis.setDrawGridLines(false)
-        barChart.axisLeft.enableGridDashedLine(10f, 10f, 0f)
+        barChart.axisLeft.enableGridDashedLine(5f, 5f, 0f)
 
         // xAxis = vertical  --  axisLeft = horizontal
         barChart.axisLeft.axisMinimum = 0F

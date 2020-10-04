@@ -86,7 +86,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginStart="16dp"
-                android:contentDescription="@string/dark_theme_description_text"
+                android:contentDescription="@string/icon_description_text"
                 android:src="@drawable/ic_color_lens"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:text="Button"
+                android:text="@string/theme_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -120,7 +120,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/user_image_description_text" />
+            android:contentDescription="@string/icon_description_text" />
 
         <Button
             android:id="@+id/button_login"
@@ -158,7 +158,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginStart="16dp"
-                android:contentDescription="@string/fingerprint_description_text"
+                android:contentDescription="@string/icon_description_text"
                 android:src="@drawable/ic_fingerprint"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -201,7 +201,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_help" />
+                app:srcCompat="@drawable/ic_baseline_help"
+                android:contentDescription="@string/icon_description_text" />
 
             <TextView
                 android:id="@+id/textView19"

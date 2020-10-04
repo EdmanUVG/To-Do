@@ -11,12 +11,25 @@
             type="com.example.walletsaver.ui.home.HomeViewModel" />
     </data>
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/primary_background_color"
             tools:context=".ui.home.HomeFragment">
+
+<!--            <TextView-->
+<!--                android:id="@+id/textToday"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="18dp"-->
+<!--                android:layout_marginTop="56dp"-->
+<!--                android:fontFamily="sans-serif-medium"-->
+<!--                android:text="Today"-->
+<!--                android:textColor="@color/colorPrimary"-->
+<!--                android:textSize="18sp"-->
+<!--                android:visibility="invisible"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/empty_screen"
@@ -68,32 +81,31 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textCompleted"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="18dp"
-                android:layout_marginTop="16dp"
-                android:text="COMPLETED"
-                android:textColor="@color/primary_text_color"
-                android:textSize="20sp"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@+id/taskCompletedList"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/taskList" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/taskCompletedList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:background="@color/primary_background_color"
-                android:visibility="invisible"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textCompleted" />
+                app:layout_constraintTop_toBottomOf="@+id/taskList" />
+
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/textCompleted"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginLeft="18dp"-->
+            <!--                android:layout_marginTop="16dp"-->
+            <!--                android:text="COMPLETED"-->
+            <!--                android:textColor="@color/primary_text_color"-->
+            <!--                android:textSize="20sp"-->
+            <!--                android:visibility="invisible"-->
+            <!--                app:layout_constraintBottom_toTopOf="@+id/taskCompletedList"-->
+            <!--                app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--                app:layout_constraintRight_toRightOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/taskList" />-->
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"

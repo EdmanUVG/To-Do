@@ -3,8 +3,7 @@
 
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -14,17 +13,19 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="com.google.android.material.BottomSheet">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:layout_behavior="com.google.android.material.BottomSheet">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal">
 
                 <EditText
@@ -59,8 +60,10 @@
             <LinearLayout
                 android:id="@+id/options_view"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal">
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp"
+                android:baselineAligned="false">
 
                 <LinearLayout
                     android:id="@+id/layout_calendar"
@@ -73,9 +76,10 @@
                     <ImageView
                         android:id="@+id/image_calendar"
                         android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/ic_baseline_calendar" />
+                        app:srcCompat="@drawable/ic_baseline_calendar"
+                        android:contentDescription="@string/icon_description_text" />
 
                 </LinearLayout>
 
@@ -92,7 +96,8 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/ic_baseline_label_important_none" />
+                        app:srcCompat="@drawable/ic_baseline_label_important_none"
+                        android:contentDescription="@string/icon_description_text" />
 
                 </LinearLayout>
 
@@ -109,7 +114,8 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/ic_baseline_local_offer" />
+                        app:srcCompat="@drawable/ic_baseline_local_offer"
+                        android:contentDescription="@string/icon_description_text" />
 
                 </LinearLayout>
 

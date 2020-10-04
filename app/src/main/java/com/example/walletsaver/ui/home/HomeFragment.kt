@@ -4,9 +4,15 @@ import android.os.Bundle
 import android.view.*
 import android.Manifest
 import android.app.Activity
+import android.content.Context
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.annotation.Nullable
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.view.marginTop
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -19,8 +25,6 @@ import com.example.walletsaver.databinding.FragmentHomeBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.bottom_sheet_filter_layout.view.*
 import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
-import java.text.SimpleDateFormat
-import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -31,11 +35,18 @@ class HomeFragment : Fragment() {
     private val STORAGE_REQUEST_CODE = 101
     private val TAG = "PermissionDemo"
 
-    var formater = SimpleDateFormat("MMM dd", Locale.US)
+    lateinit var preferences: SharedPreferences
+    lateinit var editor: SharedPreferences.Editor
 
     var esVisible = true
-    private var dueDate = ""
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        (activity as AppCompatActivity).supportActionBar?.title =  getString(com.example.walletsaver.R.string.edman)
+
+        initPrefs()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                 savedInstanceState: Bundle?): View? {
@@ -74,42 +85,58 @@ class HomeFragment : Fragment() {
             viewModel.onBudgetClicked(it)
         })
 
+        val adapterCompleted = TaskCompletedAdapter(TaskClickListeners {
+            viewModel.onBudgetClicked(it)
+        })
+
         binding.taskList.adapter = adapter
-        binding.taskCompletedList.adapter = adapter
+        binding.taskCompletedList.adapter = adapterCompleted
 
         // Will display the list in the order selected
         viewModel.isSorted.observe(viewLifecycleOwner, Observer { isSorted ->
-            if (isSorted) {
-                viewModel.tasksByPriority.observe(viewLifecycleOwner, Observer {
-                    it?.let {
-                        adapter.submitList(it)
-                    }
-                })
-            } else {
+            if (isSorted == 0) {
                 viewModel.tasks.observe(viewLifecycleOwner, Observer {
                     it?.let {
                         adapter.submitList(it)
                     }
                 })
+
+                // Completed task adapter
+                viewModel.completedTasks.observe(viewLifecycleOwner, Observer {
+                    it?.let {
+                        adapterCompleted.submitList(it)
+                    }
+                })
+
+            } else if(isSorted == 1) {
+                viewModel.tasksByPriority.observe(viewLifecycleOwner, Observer {
+                    it?.let {
+                        adapter.submitList(it)
+                    }
+                })
+
+                // Completed task adapter
+                viewModel.completedTasks.observe(viewLifecycleOwner, Observer {
+                    it?.let {
+                        adapterCompleted.submitList(it)
+                    }
+                })
+            } else if (isSorted == 2) {
+                viewModel.taskByDate.observe(viewLifecycleOwner, Observer {
+                    it?.let {
+                        adapter.submitList(it)
+                    }
+                })
+
+                // Completed task adapter
+                viewModel.completedTasks.observe(viewLifecycleOwner, Observer {
+                    it?.let {
+                        adapterCompleted.submitList(it)
+                    }
+                })
             }
         })
 
-        // Check if completed task exist to display proper UI
-//        viewModel.completedTasksCount.observe(viewLifecycleOwner, Observer { count ->
-//            if (count == 0) {
-//                binding.textCompleted.visibility = View.INVISIBLE
-//                binding.taskCompletedList.visibility = View.INVISIBLE
-//            } else {
-//                binding.taskList.visibility = View.VISIBLE
-//                binding.textCompleted.visibility = View.VISIBLE
-//                binding.taskCompletedList.visibility = View.VISIBLE
-//                viewModel.completedTasks.observe(viewLifecycleOwner, Observer {
-//                    it?.let {
-//                        adapter.submitList(it)
-//                    }
-//                })
-//            }
-//        })
 
         // Check if database is empty to display empty image background
         viewModel.rowsCount.observe(viewLifecycleOwner, Observer { count ->
@@ -178,23 +205,55 @@ class HomeFragment : Fragment() {
         }
 
         if (item.itemId == R.id.action_filter) {
-            showBottomSheetDialog()
+            showSortBottomSheetDialog()
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun showBottomSheetDialog() {
+    private fun initPrefs() {
+        preferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        editor = preferences.edit()
+    }
+
+    private fun showSortBottomSheetDialog() {
         val view = layoutInflater.inflate(R.layout.bottom_sheet_filter_layout, null)
         val dialog = context?.let { BottomSheetDialog(it) }
 
         dialog?.setContentView(view)
 
-        view.viewHigh.setOnClickListener {
+
+        // Set initial preferences
+//        val filter = preferences.getString(getString(R.string.key_filter), getString(R.string.filter_custom))
+//        if (filter.equals(getString(R.string.filter_custom))){
+//            dialog?.findViewById<RadioGroup>(R.id.filterGroup)?.check(R.id.filterCustom)
+//        } else if (filter.equals(getString(R.string.filter_priority))){
+//            dialog?.findViewById<RadioGroup>(R.id.filterGroup)?.check(R.id.filterPriority)
+//        } else{
+//            dialog?.findViewById<RadioGroup>(R.id.filterGroup)?.check(R.id.filterDate)
+//        }
+
+        // Will display the list in the order selected
+        viewModel.isSorted.observe(viewLifecycleOwner, Observer { isSorted ->
+            if (isSorted == 0) {
+                dialog?.findViewById<RadioGroup>(R.id.filterGroup)?.check(R.id.filterCustom)
+            } else if (isSorted == 1) {
+                dialog?.findViewById<RadioGroup>(R.id.filterGroup)?.check(R.id.filterPriority)
+            } else {
+                dialog?.findViewById<RadioGroup>(R.id.filterGroup)?.check(R.id.filterDate)
+            }
+        })
+
+
+        view.filterCustom.setOnClickListener {
+            viewModel.onNoPriorityClicked()
+            dialog?.dismiss()
+        }
+        view.filterPriority.setOnClickListener {
             viewModel.onPriorityClicked()
             dialog?.dismiss()
         }
-        view.viewUrgent.setOnClickListener {
-            viewModel.onNoPriorityClicked()
+        view.filterDate.setOnClickListener {
+            viewModel.onDateClicked()
             dialog?.dismiss()
         }
         

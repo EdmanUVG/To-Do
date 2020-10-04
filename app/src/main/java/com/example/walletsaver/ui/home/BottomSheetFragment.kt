@@ -34,7 +34,7 @@ class BottomSheetFragment() : BottomSheetDialogFragment() {
         viewHigh.setOnClickListener {
             Toast.makeText(context, "Twitter", Toast.LENGTH_SHORT).show()
         }
-        viewMedium.setOnClickListener {
+        viewDate.setOnClickListener {
             Toast.makeText(context, "Instagram", Toast.LENGTH_SHORT).show()
         }
         viewLow.setOnClickListener {

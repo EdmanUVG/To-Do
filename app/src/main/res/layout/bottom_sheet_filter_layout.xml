@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="340dp"
+    android:layout_height="360dp"
     android:orientation="vertical"
     app:layout_behavior="com.google.android.material.BottomSheet">
 
@@ -10,175 +10,85 @@
     <LinearLayout
         android:id="@+id/sortTitle"
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Sort your tasks"
+            android:text="@string/sort_task_text"
             android:textColor="@android:color/black"
             android:textSize="24sp"
             android:textStyle="bold" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/viewUrgent"
+    <RadioGroup
+        android:id="@+id/filterGroup"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_gravity="center_vertical"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:orientation="horizontal"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/urgent_text"
-            android:src="@drawable/ic_baseline_radio_button_checked" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RadioButton
+            android:id="@+id/filterCustom"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
             android:layout_marginStart="16dp"
-            android:text="No order"
-            android:textColor="@android:color/black"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/filter_custom"
+            android:textColor="@color/primary_text_color"
             android:textSize="16sp" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/viewHigh"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_gravity="center_vertical"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:orientation="horizontal"
-        android:padding="16dp">
-
-        <ImageView
-            android:id="@+id/imageView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/high_text"
-            android:src="@drawable/ic_baseline_radio_button_unchecked"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RadioButton
+            android:id="@+id/filterPriority"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
             android:layout_marginStart="16dp"
-            android:text="Priority"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/guideline3"
-            app:layout_constraintTop_toTopOf="parent" />
-    </LinearLayout>
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/filter_priority"
+            android:textColor="@color/primary_text_color"
+            android:textSize="16sp" />
 
-    <LinearLayout
-        android:id="@+id/viewMedium"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_gravity="center_vertical"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:orientation="horizontal"
-        android:padding="16dp">
-
-        <ImageView
-            android:id="@+id/imageView17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/medium_text"
-            android:src="@drawable/ic_baseline_radio_button_unchecked"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RadioButton
+            android:id="@+id/filterDate"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
             android:layout_marginStart="16dp"
-            android:text="Date"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
-            app:layout_constraintTop_toTopOf="parent" />
-    </LinearLayout>
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/filter_date"
+            android:textColor="@color/primary_text_color"
+            android:textSize="16sp" />
 
-    <LinearLayout
-        android:id="@+id/viewProject"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_gravity="center_vertical"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:orientation="horizontal"
-        android:padding="16dp">
-
-        <ImageView
-            android:id="@+id/imageView19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/low_text"
-            android:src="@drawable/ic_baseline_radio_button_unchecked"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RadioButton
+            android:id="@+id/filterProject"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
             android:layout_marginStart="16dp"
-            android:text="Project"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toTopOf="parent" />
-    </LinearLayout>
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/filter_project"
+            android:textColor="@color/primary_text_color"
+            android:textSize="16sp" />
 
-    <LinearLayout
-        android:id="@+id/viewTag"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_gravity="center_vertical"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:orientation="horizontal"
-        android:padding="16dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/low_text"
-            android:src="@drawable/ic_baseline_radio_button_unchecked"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RadioButton
+            android:id="@+id/filterTag"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
             android:layout_marginStart="16dp"
-            android:text="Tag"
-            android:textColor="@android:color/black"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/filter_tag"
+            android:textColor="@color/primary_text_color"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline7"
-            app:layout_constraintTop_toTopOf="parent" />
-    </LinearLayout>
+            android:layout_marginBottom="10dp"/>
 
+    </RadioGroup>
 </LinearLayout>

@@ -2,7 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_settings"
@@ -13,6 +12,12 @@
         android:id="@+id/action_filter"
         android:icon="@drawable/ic_baseline_filter_tilt_shift"
         android:title="Sort"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_view"
+        android:icon="@drawable/ic_baseline_filter_tilt_shift"
+        android:title="Switch View"
         app:showAsAction="never"/>
 
     <item
