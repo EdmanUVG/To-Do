@@ -4,9 +4,12 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +18,9 @@ import com.example.walletsaver.R
 import com.example.walletsaver.database.WalletDatabase
 import com.example.walletsaver.databinding.FragmentTaskDetailBinding
 import com.example.walletsaver.ui.history.TaskHistoryFragment
+import com.example.walletsaver.ui.home.BottomSheetAddSubTask
+import com.example.walletsaver.ui.home.BottomSheetAddTask
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.bottom_sheet_priority.view.*
@@ -72,24 +78,6 @@ class TaskDetailFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        val chipGroup = binding.taskList
-
-        val chip = Chip(chipGroup.context)
-
-        chip.text = getString(R.string.priority_text)
-
-        chip.chipBackgroundColor = context?.let {
-            AppCompatResources.getColorStateList(
-                it,
-                R.color.selected_highlight
-            )
-        }
-
-        chip.isClickable = true
-        chip.isCheckable = true
-
-        chipGroup.addView(chip)
-
         priorityView.setOnClickListener {
             showBottomSheetDialog()
         }
@@ -107,36 +95,39 @@ class TaskDetailFragment : Fragment() {
             datePicker.show()
         }
 
-        image_update_task.setOnClickListener {
-            val newTask = binding.editTextDisplayTAsk.text.toString()
-            this.image_update_task.setImageResource(R.drawable.ic_baseline_add_selected)
-            activity?.let { UIUtil.hideKeyboard(it) }
-            viewModel.updateTask(newTask)
+        val taskUpdated = binding.editTextDisplayTask
+
+        taskUpdated.addTextChangedListener(object : TextWatcher
+        {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                viewModel.updateTask(s.toString())
+            }
+
+        })
+
+        buttonAddTag.setOnClickListener{
+            showAddTagBottomSheetDialog()
         }
 
-        image_add_note.setOnClickListener {
-            val descriptions = binding.editTextDescriptions.text.toString()
-            this.image_add_note.setImageResource(R.drawable.ic_baseline_check_selected)
-            activity?.let { UIUtil.hideKeyboard(it) }
-            viewModel.updateNotes(descriptions)
-        }
-
-        image_add_subtask.setOnClickListener {
-            val subtask = binding.editTextSubtask.text.toString()
-            this.image_add_subtask.setImageResource(R.drawable.ic_baseline_check_selected)
-            activity?.let { UIUtil.hideKeyboard(it) }
-            viewModel.updateSubTask(subtask)
-            binding.editTextSubtask.setText("")
-        }
-
-//        binding.imageEdit.setOnClickListener {
-//            viewModel.onBudgetClicked(binding.textId.text.toString().toLong())
+//        image_add_note.setOnClickListener {
+//            val descriptions = binding.editTextDescriptions.text.toString()
+//            this.image_add_note.setImageResource(R.drawable.ic_baseline_check_selected)
+//            activity?.let { UIUtil.hideKeyboard(it) }
+//            viewModel.updateNotes(descriptions)
 //        }
 //
-//        viewModel.budget.observe(viewLifecycleOwner, Observer {
-//            (activity as AppCompatActivity).supportActionBar?.title = viewModel.budget.value?.tag
-//        })
-
+        constraintLayoutSubTask.setOnClickListener {
+            val mBottomSheetFragment = BottomSheetAddSubTask()
+            mBottomSheetFragment.show(requireActivity().supportFragmentManager, "MY_BOTTOM_SHEET")
+        }
 
     }
 
@@ -171,6 +162,11 @@ class TaskDetailFragment : Fragment() {
 
         dialog?.setContentView(view)
 
+        view.layoutAddMember.setOnClickListener {
+            showAddMemberBottomSheetDialog()
+            dialog?.dismissWithAnimation
+        }
+
         view.layoutTaskActivity.setOnClickListener {
             val mBottomSheetFragment = TaskHistoryFragment()
             mBottomSheetFragment.show(requireActivity().supportFragmentManager, "MY_BOTTOM_SHEET")
@@ -188,6 +184,27 @@ class TaskDetailFragment : Fragment() {
             activity?.onBackPressed()
             dialog?.dismiss()
         }
+
+        dialog?.show()
+    }
+
+    private fun showAddTagBottomSheetDialog() {
+        val view = layoutInflater.inflate(R.layout.dialog_add_tag_layout, null)
+        val dialog = context?.let { BottomSheetDialog(it) }
+
+        val bottomSheet: View? = dialog?.findViewById(R.id.tag_bottom_sheet)
+        BottomSheetBehavior.from(bottomSheet!!).peekHeight = 420
+
+        dialog?.setContentView(view)
+
+        dialog?.show()
+    }
+
+    private fun showAddMemberBottomSheetDialog() {
+        val view = layoutInflater.inflate(R.layout.dialog_add_member_layout, null)
+        val dialog = context?.let { BottomSheetDialog(it) }
+
+        dialog?.setContentView(view)
 
         dialog?.show()
     }

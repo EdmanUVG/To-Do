@@ -7,16 +7,16 @@
 
 
     <color name="navigationBarColor">#FFFFFF</color>
-
-
     <color name="stats_background_color">#F6F8FC</color>
+
 
     <color name="urgent_color">#FA2323</color>
     <color name="high_color">#FFBD5A</color>
     <color name="low_color">#808080</color>
 
     <color name="bottom_view_color">#F3F3F8</color>
-    <color name="secondary_icon_color">#7C7B7B</color>
+<!--    <color name="secondary_icon_color">#7C7B7B</color>-->
+    <color name="secondary_icon_color">#D3D3D3</color>
     <color name="hint_text_color">#F6F6F6</color>
 
     <color name="gray_completed_color">#CB808080</color>

@@ -27,7 +27,7 @@ data class Task (
     var creationDate: String,
 
     @Nullable
-    var subtask: String,
+    var subTasks: String,
 
     @Nullable
     var description: String,

@@ -9,16 +9,16 @@ import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.widget.RadioGroup
 import android.widget.Toast
-import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.view.marginTop
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
 import com.example.walletsaver.R
 import com.example.walletsaver.database.WalletDatabase
 import com.example.walletsaver.databinding.FragmentHomeBinding
@@ -207,6 +207,11 @@ class HomeFragment : Fragment() {
         if (item.itemId == R.id.action_filter) {
             showSortBottomSheetDialog()
         }
+
+        if (item.itemId == R.id.action_switch_view) {
+            showSwitchViewDialog()
+        }
+
         return super.onOptionsItemSelected(item)
     }
 
@@ -257,6 +262,16 @@ class HomeFragment : Fragment() {
             dialog?.dismiss()
         }
         
+        dialog?.show()
+    }
+
+    private fun showSwitchViewDialog() {
+        val dialog = context?.let {
+            MaterialDialog(it)
+                .noAutoDismiss()
+                .customView(R.layout.dialog_switch_view_layout)
+        }
+
         dialog?.show()
     }
 }

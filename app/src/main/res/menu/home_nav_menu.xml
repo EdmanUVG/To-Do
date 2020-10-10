@@ -5,29 +5,29 @@
     <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_settings"
-        android:title="Settings"
+        android:title="@string/settings_text"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_filter"
         android:icon="@drawable/ic_baseline_filter_tilt_shift"
-        android:title="Sort"
+        android:title="@string/sort_text"
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/action_view"
+        android:id="@+id/action_switch_view"
         android:icon="@drawable/ic_baseline_filter_tilt_shift"
-        android:title="Switch View"
+        android:title="@string/switch_view_text"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_print"
         android:icon="@drawable/ic_baseline_print"
-        android:title="Print"
+        android:title="@string/print_text"
         app:showAsAction="never"/>
     <item
         android:id="@+id/action_share"
         android:icon="@drawable/ic_baseline_share"
-        android:title="Share"
+        android:title="@string/share_text"
         app:showAsAction="never"/>
 </menu>

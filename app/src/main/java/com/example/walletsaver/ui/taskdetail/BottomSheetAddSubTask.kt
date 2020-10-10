@@ -13,21 +13,22 @@ import com.example.walletsaver.R
 import com.example.walletsaver.database.WalletDatabase
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
+import com.example.walletsaver.ui.taskdetail.BottomSheetAddSubTaskViewModel
+import com.example.walletsaver.ui.taskdetail.BottomSheetAddSubTaskViewModelFactory
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.bottom_sheet_add_task.*
-import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
 
-class BottomSheetAddTask() :  BottomSheetDialogFragment(){
+class BottomSheetAddSubTask() :  BottomSheetDialogFragment(){
 
     private var fragmentView: View? = null
 
-    private lateinit var viewModel: BottomSheetAddTaskViewModel
-    private lateinit var viewModelFactory: BottomSheetAddTaskViewModelFactory
+    private lateinit var viewModel: BottomSheetAddSubTaskViewModel
+    private lateinit var viewModelFactory: BottomSheetAddSubTaskViewModelFactory
 
     var formater = SimpleDateFormat("MMM dd", Locale.US)
     private var dueDate = ""
@@ -40,7 +41,7 @@ class BottomSheetAddTask() :  BottomSheetDialogFragment(){
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        fragmentView = inflater.inflate(R.layout.bottom_sheet_add_task, container, false)
+        fragmentView = inflater.inflate(R.layout.bottom_sheet_add_subtask, container, false)
 
         return fragmentView
     }
@@ -52,8 +53,8 @@ class BottomSheetAddTask() :  BottomSheetDialogFragment(){
 
         val dataSourceBudget = WalletDatabase.getInstance(application).taskDatabaseDao
 
-        viewModelFactory = BottomSheetAddTaskViewModelFactory(dataSourceBudget)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(BottomSheetAddTaskViewModel::class.java)
+        viewModelFactory = BottomSheetAddSubTaskViewModelFactory(dataSourceBudget)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(BottomSheetAddSubTaskViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -99,7 +100,7 @@ class BottomSheetAddTask() :  BottomSheetDialogFragment(){
 
                 val creationDate = now.format(DateTimeFormatter.ofPattern("MMM dd"))
 
-                viewModel.insertTask(task, priority, "Mate",  dueDate, iconIndex, creationDate.toString())
+                //viewModel.insertTask(task, priority, "Mate",  dueDate, iconIndex, creationDate.toString())
 
                 dialog?.dismiss()
 

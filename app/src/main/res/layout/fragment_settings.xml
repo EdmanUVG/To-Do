@@ -21,8 +21,6 @@
             android:id="@+id/layoutOverview"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/primary_background_color"
-            android:foreground="?android:attr/selectableItemBackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layoutPremium">
@@ -42,8 +40,6 @@
             android:id="@+id/layoutPremium"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/primary_background_color"
-            android:foreground="?android:attr/selectableItemBackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_help">
@@ -64,7 +60,6 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="8dp"
-            android:background="@color/primary_background_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_login">
@@ -136,7 +131,6 @@
             android:id="@+id/constraintLayout3"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/primary_background_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
@@ -187,8 +181,6 @@
             android:id="@+id/layout_help"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:background="@color/primary_background_color"
-            android:foreground="?android:attr/selectableItemBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">

@@ -96,6 +96,9 @@ dependencies {
     def material_dialogs_version = "3.1.0"
     implementation "com.afollestad.material-dialogs:core:$material_dialogs_version"
 
+    // Preference
+    implementation "androidx.preference:preference-ktx:1.1.1"
+
     // MP Android Chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 

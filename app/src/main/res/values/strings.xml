@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Wallet Saver</string>
 
-    <string name="add_new_task">Add a new task</string>
+    <string name="add_new_task"><font size="16">Add a new task</font></string>
+    <string name="new_tag_text"><font size="16"> New Tag</font></string>
     <string name="add_tag_text">Add Tag</string>
     <string name="add_subtask_text">Add a subtask</string>
     <string name="add_assignee">Add assignee</string>
@@ -19,6 +20,13 @@
 
 
     <string name="settings_text">Settings</string>
+    <string name="sort_text">Sort</string>
+    <string name="switch_view_text">Switch View</string>
+    <string name="print_text">Print</string>
+    <string name="list_view_text">List View</string>
+    <string name="kanban_view">Kanban View</string>
+
+
     <string name="fingerprint_text">Activate fingerprint</string>
 
     <string name="privacy_text">Política de privacidad</string>
@@ -35,7 +43,7 @@
     <string name="filter_date">Date</string>
     <string name="filter_project">Project</string>
     <string name="filter_tag">Tag</string>
-    <string name="sort_task_text">Sort by</string>
+    <string name="sort_by_text">Sort by</string>
 
     <string name="urgent_text">Urgent</string>
     <string name="high_text">High</string>
@@ -53,7 +61,7 @@
     <string name="move_tasK_text">Move task</string>
     <string name="duplicate_task_text">Duplicate task</string>
     <string name="task_activity_text">Task activity</string>
-    <string name="share_task_text">Share</string>
+    <string name="share_text">Share</string>
     <string name="add_member_text">Add member</string>
 
 </resources>

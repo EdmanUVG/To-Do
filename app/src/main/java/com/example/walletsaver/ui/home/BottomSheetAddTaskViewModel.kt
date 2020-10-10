@@ -12,14 +12,8 @@ class BottomSheetAddTaskViewModel(val database: TaskDatabaseDao) : ViewModel() {
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     fun insertTask(task: String, priority: String, tag: String, dueDate: String, iconIndex: Int, creationDate: String ) {
-        if (iconIndex != 1 && iconIndex != 2 && iconIndex !=3 && iconIndex != 4) {
-            uiScope.launch {
-                insert(task, priority, tag, dueDate, 4, creationDate)
-            }
-        } else {
-            uiScope.launch {
-                insert(task, priority, tag, dueDate, iconIndex, creationDate)
-            }
+        uiScope.launch {
+            insert(task, priority, tag, dueDate, iconIndex, creationDate)
         }
     }
 
@@ -27,8 +21,8 @@ class BottomSheetAddTaskViewModel(val database: TaskDatabaseDao) : ViewModel() {
         withContext(Dispatchers.IO) {
             database.insert(
                 Task(task = task?: "", priority = priority ?: "", tag = tag ?: "", dueDate = dueDate ?: "",
-                    iconIndex = iconIndex?: 4, creationDate = creationDate ?: "", subtask = "", description = "",
-                    status = 0)
+                    iconIndex = iconIndex?: 4, creationDate = creationDate ?: "", subTasks = "",
+                    description = "", status = 0)
             )
         }
     }
